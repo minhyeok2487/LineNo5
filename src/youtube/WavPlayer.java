@@ -11,7 +11,7 @@ public class WavPlayer {
 	public static void main(String[] args) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 		Scanner scanner = new Scanner(System.in);
 		
-		String filename = "C:/Users/Minhyeok/git/LineNo5/python_MH/audio/가시.wav";
+		String filename = "By the Fireplace.wav";
 		File file = new File(filename);
 		AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 		Clip clip = AudioSystem.getClip();
