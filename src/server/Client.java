@@ -3,6 +3,8 @@ package server;
 import java.io.IOException;
 import java.net.Socket;
 
+import youtube.YoutubeFrame;
+
 public class Client {
 	public static void main(String[] args) {
 		String serverIp = "192.168.1.35";
@@ -14,6 +16,7 @@ public class Client {
 			// 파일 수신용 클래스 생성 및 시작
 			Receiver receiver = new Receiver(socket);
 			receiver.start();
+			new YoutubeFrame();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

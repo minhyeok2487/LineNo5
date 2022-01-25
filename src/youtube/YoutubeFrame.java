@@ -46,8 +46,4 @@ public class YoutubeFrame extends JFrame implements ActionListener
 			e1.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		new YoutubeFrame();
-	}
 }
