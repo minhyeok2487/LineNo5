@@ -13,7 +13,7 @@ public class WavPlayer {
 		ReadTxt readtxt = new ReadTxt();
 		Scanner scanner = new Scanner(System.in);
 		String dir = "C:/Users/Minhyeok/Desktop/Git/LineNo5/python_MH/audio/";
-		int N = random.nextInt(3);
+		int N = random.nextInt(readtxt.links.size());
 		String number = Integer.toString(N);
 		String filename = dir + number+".wav";
 		File file = new File(filename);

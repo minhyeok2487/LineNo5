@@ -6,7 +6,7 @@ from pydub import AudioSegment
 import math
 
 # 경로 설정
-base_dir = 'C:/Users/Minhyeok/Desktop/git/LineNo5/python_MH/audio/'
+base_dir = 'C:/Users/Minhyeok/Desktop/Git/LineNo5/python_MH/audio/'
 os.chdir(base_dir)
 
 # 리스트 불러와서 가공하기 쉽게 데이터 프레임으로 생성
