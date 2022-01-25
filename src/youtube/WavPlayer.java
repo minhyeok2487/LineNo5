@@ -2,16 +2,20 @@ package youtube;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 import javax.sound.sampled.*;
 
 public class WavPlayer {
-
+	static Random random = new Random();
 	public static void main(String[] args) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+		ReadTxt readtxt = new ReadTxt();
 		Scanner scanner = new Scanner(System.in);
-		
-		String filename = "By the Fireplace.wav";
+		String dir = "C:/Users/Minhyeok/Desktop/Git/LineNo5/python_MH/audio/";
+		int N = random.nextInt(3);
+		String number = Integer.toString(N);
+		String filename = dir + number+".wav";
 		File file = new File(filename);
 		AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 		Clip clip = AudioSystem.getClip();
@@ -24,6 +28,7 @@ public class WavPlayer {
 			response = response.toUpperCase();
 			switch (response) {
 			case ("P"): clip.start();
+			System.out.println("재생곡 : "+readtxt.names.get(N+1));
 			break;
 			case ("S"): clip.stop();
 			break;
