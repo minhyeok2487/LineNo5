@@ -16,7 +16,7 @@ public class Client {
 			// 파일 수신용 클래스 생성 및 시작
 			Receiver receiver = new Receiver(socket);
 			receiver.start();
-			new YoutubeFrame();
+			new Player();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
