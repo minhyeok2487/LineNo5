@@ -1,4 +1,5 @@
-package youtube;
+package server;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -7,12 +8,12 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
- 
-public class YoutubeFrame extends JFrame implements ActionListener
-{
-	public YoutubeFrame()  {
+
+import youtube.Wav;
+
+public class Player extends JFrame implements ActionListener {
+	public Player()  {
 		JFrame f1 =new JFrame();
 		
 		JButton b1 = new JButton("제출");
@@ -30,7 +31,7 @@ public class YoutubeFrame extends JFrame implements ActionListener
 		f1.add(b2);
 		f1.add(b3);
 		f1.add(l1);
-		f1.setTitle("노래재생 연습");
+		f1.setTitle("서버에서 하나 받아옴");
 		f1.setSize(500,300);
 		f1.setLayout(null);
 		f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,7 +42,7 @@ public class YoutubeFrame extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			new Wav();
+			new MusicOne();
 		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e1) {
 			e1.printStackTrace();
 		}
