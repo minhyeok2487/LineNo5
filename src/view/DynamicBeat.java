@@ -29,6 +29,8 @@ public class DynamicBeat extends JFrame {
 	private ImageIcon Single5BtnMouseOver = new ImageIcon(Main.class.getResource("Single5BtnMouseOver.png"));
 	private ImageIcon Single10Btn = new ImageIcon(Main.class.getResource("Single10Btn.png"));
 	private ImageIcon Single10BtnMouseOver = new ImageIcon(Main.class.getResource("Single10BtnMouseOver.png"));
+	private ImageIcon MultiBtn = new ImageIcon(Main.class.getResource("MultiBtn.png"));
+	private ImageIcon MultiBtnMouseOver = new ImageIcon(Main.class.getResource("MultiBtnMouseOver.png"));
 
 	private Image background = new ImageIcon(Main.class.getResource("introBackground.jpg")).getImage();
 
@@ -37,6 +39,7 @@ public class DynamicBeat extends JFrame {
 	private JButton Single1Button = new JButton(Single1Btn);
 	private JButton Single5Button = new JButton(Single5Btn);
 	private JButton Single10Button = new JButton(Single10Btn);
+	private JButton MultiButton = new JButton(MultiBtn);
 
 	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("MenuBar.png")));
 	private JButton exitButton = new JButton(ExitBtn);
@@ -116,8 +119,11 @@ public class DynamicBeat extends JFrame {
 				buttonSound.start();
 				playButton.setVisible(false);
 				QuitButton.setVisible(false);
-				background = new ImageIcon(Main.class.getResource("playBackground.jpg")).getImage();
+				//background = new ImageIcon(Main.class.getResource("playBackground.jpg")).getImage();
 				add(Single1Button);
+				add(Single5Button);
+				add(Single10Button);
+				add(MultiButton);
 
 			}
 
@@ -172,7 +178,7 @@ public class DynamicBeat extends JFrame {
 		Music introMusic = new Music("introMusic.mp3", true);
 		introMusic.start();
 
-		Single1Button.setBounds(160, 100, 400, 204);
+		Single1Button.setBounds(200, 250, 400, 204);
 		Single1Button.setBorderPainted(false);
 		Single1Button.setContentAreaFilled(false);
 		Single1Button.setFocusPainted(false);
@@ -195,6 +201,84 @@ public class DynamicBeat extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				Single1Button.setIcon(Single1Btn);
 				Single1Button.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		
+		Single5Button.setBounds(650, 250, 400, 204);
+		Single5Button.setBorderPainted(false);
+		Single5Button.setContentAreaFilled(false);
+		Single5Button.setFocusPainted(false);
+		Single5Button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Music buttonSound = new Music("ButtonSound.mp3", false);
+				buttonSound.start();
+				// 싱글 5초로 음악맞추기 게임 시작
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				Music buttonSound = new Music("ButtonSound.mp3", false);
+				buttonSound.start();
+				Single5Button.setIcon(Single5BtnMouseOver);
+				Single5Button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				Single5Button.setIcon(Single5Btn);
+				Single5Button.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		
+		Single10Button.setBounds(200, 504, 400, 204);
+		Single10Button.setBorderPainted(false);
+		Single10Button.setContentAreaFilled(false);
+		Single10Button.setFocusPainted(false);
+		Single10Button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Music buttonSound = new Music("ButtonSound.mp3", false);
+				buttonSound.start();
+				// 싱글 10초로 음악맞추기 게임 시작
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				Music buttonSound = new Music("ButtonSound.mp3", false);
+				buttonSound.start();
+				Single10Button.setIcon(Single10BtnMouseOver);
+				Single10Button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				Single10Button.setIcon(Single10Btn);
+				Single10Button.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		
+		MultiButton.setBounds(650, 504, 400, 204);
+		MultiButton.setBorderPainted(false);
+		MultiButton.setContentAreaFilled(false);
+		MultiButton.setFocusPainted(false);
+		MultiButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Music buttonSound = new Music("ButtonSound.mp3", false);
+				buttonSound.start();
+				// 멀티 음악맞추기 게임 시작
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				Music buttonSound = new Music("ButtonSound.mp3", false);
+				buttonSound.start();
+				MultiButton.setIcon(MultiBtnMouseOver);
+				MultiButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				MultiButton.setIcon(MultiBtn);
+				MultiButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 
