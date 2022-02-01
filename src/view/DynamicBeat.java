@@ -19,33 +19,33 @@ public class DynamicBeat extends JFrame {
 	private Image screenImage;
 	private Graphics screenGraphic;
 
-	private ImageIcon PlayBtn = new ImageIcon(Main.class.getResource("PlayBtn.png"));
-	private ImageIcon PlayBtnMouseOver = new ImageIcon(Main.class.getResource("PlayBtnMouseOver.png"));
-	private ImageIcon QuitBtn = new ImageIcon(Main.class.getResource("QuitBtn.png"));
-	private ImageIcon QuitBtnMouseOver = new ImageIcon(Main.class.getResource("QuitBtnMouseOver.png"));
-	private ImageIcon ExitBtn = new ImageIcon(Main.class.getResource("ExitButton.png"));
-	private ImageIcon ExitBtnMouseOver = new ImageIcon(Main.class.getResource("ExitButtonMouseOver.png"));
-	private ImageIcon Single1Btn = new ImageIcon(Main.class.getResource("Single1Btn.png"));
-	private ImageIcon Single1BtnMouseOver = new ImageIcon(Main.class.getResource("Single1BtnMouseOver.png"));
-	private ImageIcon Single5Btn = new ImageIcon(Main.class.getResource("Single5Btn.png"));
-	private ImageIcon Single5BtnMouseOver = new ImageIcon(Main.class.getResource("Single5BtnMouseOver.png"));
-	private ImageIcon Single10Btn = new ImageIcon(Main.class.getResource("Single10Btn.png"));
-	private ImageIcon Single10BtnMouseOver = new ImageIcon(Main.class.getResource("Single10BtnMouseOver.png"));
-	private ImageIcon MultiBtn = new ImageIcon(Main.class.getResource("MultiBtn.png"));
-	private ImageIcon MultiBtnMouseOver = new ImageIcon(Main.class.getResource("MultiBtnMouseOver.png"));
-	private ImageIcon NextBtn = new ImageIcon(Main.class.getResource("NextButton.png"));
-	private ImageIcon NextBtnMouseOver = new ImageIcon(Main.class.getResource("NextButtonMouseOver.png"));
-	private ImageIcon PlayMusicBtn = new ImageIcon(Main.class.getResource("PlayMusicBtn.png"));
-	private ImageIcon PlayMusicBtnMouseOver = new ImageIcon(Main.class.getResource("PlayMusicBtnMouseOver.png"));
-	private ImageIcon SingerHintBtn = new ImageIcon(Main.class.getResource("SingerHintBtn.png"));
-	private ImageIcon SingerHintBtnMouseOver = new ImageIcon(Main.class.getResource("SingerHintBtnMouseOver.png"));
-	private ImageIcon SongHintBtn = new ImageIcon(Main.class.getResource("SongHintBtn.png"));
-	private ImageIcon SongHintBtnMouseOver = new ImageIcon(Main.class.getResource("SongHintBtnMouseOver.png"));
+	private ImageIcon PlayBtn = new ImageIcon(GameMain.class.getResource("PlayBtn.png"));
+	private ImageIcon PlayBtnMouseOver = new ImageIcon(GameMain.class.getResource("PlayBtnMouseOver.png"));
+	private ImageIcon QuitBtn = new ImageIcon(GameMain.class.getResource("QuitBtn.png"));
+	private ImageIcon QuitBtnMouseOver = new ImageIcon(GameMain.class.getResource("QuitBtnMouseOver.png"));
+	private ImageIcon ExitBtn = new ImageIcon(GameMain.class.getResource("ExitButton.png"));
+	private ImageIcon ExitBtnMouseOver = new ImageIcon(GameMain.class.getResource("ExitButtonMouseOver.png"));
+	private ImageIcon Single1Btn = new ImageIcon(GameMain.class.getResource("Single1Btn.png"));
+	private ImageIcon Single1BtnMouseOver = new ImageIcon(GameMain.class.getResource("Single1BtnMouseOver.png"));
+	private ImageIcon Single5Btn = new ImageIcon(GameMain.class.getResource("Single5Btn.png"));
+	private ImageIcon Single5BtnMouseOver = new ImageIcon(GameMain.class.getResource("Single5BtnMouseOver.png"));
+	private ImageIcon Single10Btn = new ImageIcon(GameMain.class.getResource("Single10Btn.png"));
+	private ImageIcon Single10BtnMouseOver = new ImageIcon(GameMain.class.getResource("Single10BtnMouseOver.png"));
+	private ImageIcon MultiBtn = new ImageIcon(GameMain.class.getResource("MultiBtn.png"));
+	private ImageIcon MultiBtnMouseOver = new ImageIcon(GameMain.class.getResource("MultiBtnMouseOver.png"));
+	private ImageIcon NextBtn = new ImageIcon(GameMain.class.getResource("NextButton.png"));
+	private ImageIcon NextBtnMouseOver = new ImageIcon(GameMain.class.getResource("NextButtonMouseOver.png"));
+	private ImageIcon PlayMusicBtn = new ImageIcon(GameMain.class.getResource("PlayMusicBtn.png"));
+	private ImageIcon PlayMusicBtnMouseOver = new ImageIcon(GameMain.class.getResource("PlayMusicBtnMouseOver.png"));
+	private ImageIcon SingerHintBtn = new ImageIcon(GameMain.class.getResource("SingerHintBtn.png"));
+	private ImageIcon SingerHintBtnMouseOver = new ImageIcon(GameMain.class.getResource("SingerHintBtnMouseOver.png"));
+	private ImageIcon SongHintBtn = new ImageIcon(GameMain.class.getResource("SongHintBtn.png"));
+	private ImageIcon SongHintBtnMouseOver = new ImageIcon(GameMain.class.getResource("SongHintBtnMouseOver.png"));
 	
 	
-	private ImageIcon Te = new ImageIcon(Main.class.getResource("Button.png"));
+	private ImageIcon Te = new ImageIcon(GameMain.class.getResource("Button.png"));
 	
-	private Image background = new ImageIcon(Main.class.getResource("introBackground.jpg")).getImage();
+	private Image background = new ImageIcon(GameMain.class.getResource("introBackground.jpg")).getImage();
 
 	private JButton playButton = new JButton(PlayBtn);
 	private JButton QuitButton = new JButton(QuitBtn);
@@ -61,14 +61,14 @@ public class DynamicBeat extends JFrame {
 	private JTextField Enter = new JTextField(10);
 	private JLabel label = new JLabel(Te);
 	
-	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("MenuBar.png")));
+	private JLabel menuBar = new JLabel(new ImageIcon(GameMain.class.getResource("MenuBar.png")));
 	private JButton exitButton = new JButton(ExitBtn);
 	private int mouseX, mouseY;
 
 	public DynamicBeat() {
 		setUndecorated(true);
 		setTitle("Dynamic Beat");
-		setSize(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+		setSize(GameMain.SCREEN_WIDTH, GameMain.SCREEN_HEIGHT);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -215,7 +215,7 @@ public class DynamicBeat extends JFrame {
 				Single5Button.setVisible(false);
 				Single10Button.setVisible(false);
 				MultiButton.setVisible(false);
-				background = new ImageIcon(Main.class.getResource("playBackground.jpg")).getImage();
+				background = new ImageIcon(GameMain.class.getResource("playBackground.jpg")).getImage();
 				add(NextButton);
 				add(PlayMusicButton);
 				add(SongHintButton);
@@ -425,7 +425,7 @@ public class DynamicBeat extends JFrame {
 	}
 
 	public void paint(Graphics g) {
-		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+		screenImage = createImage(GameMain.SCREEN_WIDTH, GameMain.SCREEN_HEIGHT);
 		screenGraphic = screenImage.getGraphics();
 		screenDraw(screenGraphic);
 		g.drawImage(screenImage, 0, 0, null);
