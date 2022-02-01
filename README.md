@@ -41,4 +41,18 @@
   * 클라이언트 닫으면 받아온 음악파일들 삭제
   * 음악 파일 1초 3초 나눠서 저장되게 구현
 
+
+# 2022_01_28까지 작업한 GUI
+## 1. 메인화면
+![01](https://user-images.githubusercontent.com/76654360/151514062-cec0e935-dec5-4767-bb2e-a54ebca71ad8.jpg)
+  * 플레이버튼 클릭시 다음 화면으로 넘어감
+
+## 2. 선택화면
+![02](https://user-images.githubusercontent.com/76654360/151514145-558a90bb-3182-4ed4-b84e-18d69086f530.jpg)
+  * 싱글 플레이 난이도 3개와 멀티 플레이 선택화면
+
+## 3. 싱글 게임 화면(구현중)
+![03](https://user-images.githubusercontent.com/76654360/151514278-a55fa0a8-f6db-450c-b053-d35aba54c337.jpg)
+
+
     
