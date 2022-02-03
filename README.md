@@ -52,8 +52,8 @@
   * 싱글 플레이 난이도 3개와 멀티 플레이 선택화면
 
 ## 3. 싱글 게임 화면(구현중)
-![03](https://user-images.githubusercontent.com/76654360/151514278-a55fa0a8-f6db-450c-b053-d35aba54c337.jpg)
-
+![image](https://user-images.githubusercontent.com/76654360/152288555-099b8180-a616-414a-ae46-8a1915d34879.png)
+  * 왼쪽 상단 재생 버튼 누르면 랜덤으로 음악재생 (2022_02_03 추가)
 
     
 # 2022_02_03 수정사항
