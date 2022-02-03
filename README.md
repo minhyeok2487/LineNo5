@@ -48,7 +48,7 @@
    : 배경음 플레이 클래스
   * SingleGame.java
 
-   : 싱글 게임 프레임
+   : 싱글 게임 프레임 - ModelPackage에 PlayWav.java
 
 ### 개선사항
   * 서버에서 음악파일 중복없이 랜덤으로 N개 클라이언트에 보내기
