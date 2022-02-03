@@ -1,4 +1,4 @@
-﻿Link	Song	Singer
+Link	Song	Singer
 https://youtu.be/kUJv343NHsU	인연	이선희
 https://youtu.be/AoVt7Qe9t1s	가시	버즈
 https://youtu.be/j_Wobf3NBJ4	timeless	sg워너비
@@ -29,6 +29,3 @@ https://youtu.be/gyCss-xlMNA	Y	엠블랙
 https://youtu.be/Vgm-adAsiIU	불면증	휘성
 https://youtu.be/X2TPleB28ek	왜	동방신기
 https://youtu.be/H0MQJfgjl3o	풍선	동방신기
-
-
-		

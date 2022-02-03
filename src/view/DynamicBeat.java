@@ -33,14 +33,7 @@ public class DynamicBeat extends JFrame {
 	private ImageIcon Single10BtnMouseOver = new ImageIcon(GameMain.class.getResource("Single10BtnMouseOver.png"));
 	private ImageIcon MultiBtn = new ImageIcon(GameMain.class.getResource("MultiBtn.png"));
 	private ImageIcon MultiBtnMouseOver = new ImageIcon(GameMain.class.getResource("MultiBtnMouseOver.png"));
-	private ImageIcon NextBtn = new ImageIcon(GameMain.class.getResource("NextButton.png"));
-	private ImageIcon NextBtnMouseOver = new ImageIcon(GameMain.class.getResource("NextButtonMouseOver.png"));
-	private ImageIcon PlayMusicBtn = new ImageIcon(GameMain.class.getResource("PlayMusicBtn.png"));
-	private ImageIcon PlayMusicBtnMouseOver = new ImageIcon(GameMain.class.getResource("PlayMusicBtnMouseOver.png"));
-	private ImageIcon SingerHintBtn = new ImageIcon(GameMain.class.getResource("SingerHintBtn.png"));
-	private ImageIcon SingerHintBtnMouseOver = new ImageIcon(GameMain.class.getResource("SingerHintBtnMouseOver.png"));
-	private ImageIcon SongHintBtn = new ImageIcon(GameMain.class.getResource("SongHintBtn.png"));
-	private ImageIcon SongHintBtnMouseOver = new ImageIcon(GameMain.class.getResource("SongHintBtnMouseOver.png"));
+	
 	
 	
 	private ImageIcon Te = new ImageIcon(GameMain.class.getResource("Button.png"));
@@ -53,13 +46,8 @@ public class DynamicBeat extends JFrame {
 	private JButton Single5Button = new JButton(Single5Btn);
 	private JButton Single10Button = new JButton(Single10Btn);
 	private JButton MultiButton = new JButton(MultiBtn);
-	private JButton NextButton = new JButton(NextBtn);
-	private JButton PlayMusicButton = new JButton(PlayMusicBtn);
-	private JButton SingerHintButton = new JButton(SingerHintBtn);
-	private JButton SongHintButton = new JButton(SongHintBtn);
-
-	private JTextField Enter = new JTextField(10);
-	private JLabel label = new JLabel(Te);
+	
+	
 	
 	private JLabel menuBar = new JLabel(new ImageIcon(GameMain.class.getResource("MenuBar.png")));
 	private JButton exitButton = new JButton(ExitBtn);
@@ -211,17 +199,13 @@ public class DynamicBeat extends JFrame {
 				buttonSound.start();
 				// 싱글 1초로 음악맞추기 게임 시작
 				introMusic.close();
-				Single1Button.setVisible(false);
-				Single5Button.setVisible(false);
-				Single10Button.setVisible(false);
-				MultiButton.setVisible(false);
-				background = new ImageIcon(GameMain.class.getResource("playBackground.jpg")).getImage();
-				add(NextButton);
-				add(PlayMusicButton);
-				add(SongHintButton);
-				add(SingerHintButton);
-				add(label);
-				add(Enter);
+				//Single1Button.setVisible(false);
+				//Single5Button.setVisible(false);
+				//Single10Button.setVisible(false);
+				//MultiButton.setVisible(false);
+				//background = new ImageIcon(GameMain.class.getResource("playBackground.jpg")).getImage();
+				new OneSecondGame();
+				
 			}
 
 			@Override
@@ -313,106 +297,6 @@ public class DynamicBeat extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				MultiButton.setIcon(MultiBtn);
 				MultiButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			}
-		});
-		
-		NextButton.setBounds(1100, 570, 120, 120);
-		NextButton.setBorderPainted(false);
-		NextButton.setContentAreaFilled(false);
-		NextButton.setFocusPainted(false);
-		NextButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Music buttonSound = new Music("ButtonSound.mp3", false);
-				buttonSound.start();
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				Music buttonSound = new Music("ButtonSound.mp3", false);
-				buttonSound.start();
-				NextButton.setIcon(NextBtnMouseOver);
-				NextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				NextButton.setIcon(NextBtn);
-				NextButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			}
-		});
-		
-		PlayMusicButton.setBounds(80, 60, 120, 120);
-		PlayMusicButton.setBorderPainted(false);
-		PlayMusicButton.setContentAreaFilled(false);
-		PlayMusicButton.setFocusPainted(false);
-		PlayMusicButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Music buttonSound = new Music("ButtonSound.mp3", false);
-				buttonSound.start();
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				Music buttonSound = new Music("ButtonSound.mp3", false);
-				buttonSound.start();
-				PlayMusicButton.setIcon(PlayMusicBtnMouseOver);
-				PlayMusicButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				PlayMusicButton.setIcon(PlayMusicBtn);
-				PlayMusicButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			}
-		});
-		
-		SingerHintButton.setBounds(50, 250, 300, 81);
-		SingerHintButton.setBorderPainted(false);
-		SingerHintButton.setContentAreaFilled(false);
-		SingerHintButton.setFocusPainted(false);
-		SingerHintButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Music buttonSound = new Music("ButtonSound.mp3", false);
-				buttonSound.start();
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				Music buttonSound = new Music("ButtonSound.mp3", false);
-				buttonSound.start();
-				SingerHintButton.setIcon(SingerHintBtnMouseOver);
-				SingerHintButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				SingerHintButton.setIcon(SingerHintBtn);
-				SingerHintButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			}
-		});
-		
-		SongHintButton.setBounds(50, 350, 300, 81);
-		SongHintButton.setBorderPainted(false);
-		SongHintButton.setContentAreaFilled(false);
-		SongHintButton.setFocusPainted(false);
-		SongHintButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Music buttonSound = new Music("ButtonSound.mp3", false);
-				buttonSound.start();
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				Music buttonSound = new Music("ButtonSound.mp3", false);
-				buttonSound.start();
-				SongHintButton.setIcon(SongHintBtnMouseOver);
-				SongHintButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				SongHintButton.setIcon(SongHintBtn);
-				SongHintButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		
