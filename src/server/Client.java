@@ -1,15 +1,15 @@
 package server;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
-
-import youtube.YoutubeFrame;
 
 public class Client {
 	public static void main(String[] args) {
-		String serverIp = "192.168.1.35";
 		Socket socket = null;
 		try {
+			InetAddress ip = InetAddress.getLocalHost();
+			String serverIp = ip.getHostAddress();
 			// 서버연결
 			socket = new Socket(serverIp, 7777);
 			System.out.println("서버에 연결되었습니다.");
