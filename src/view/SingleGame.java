@@ -50,6 +50,7 @@ public class SingleGame extends JFrame{
 	private JLabel label = new JLabel();
 	
 	private HintCount hintcount = new HintCount();
+	private NextCount nextcount = new NextCount();
 	
 	public SingleGame(int num) {
 		this.num = num;
@@ -123,6 +124,13 @@ public class SingleGame extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				Music buttonSound = new Music("ButtonSound.mp3", false);
 				buttonSound.start();
+				if(NextCount.count>0) {
+					nextcount.Remain().setVisible(false);
+					NextCount.count = NextCount.count-1;
+					add(nextcount.Remain());
+				} else {
+					System.out.println("다음없음");
+				}
 			}
 			
 			@Override
@@ -242,6 +250,7 @@ public class SingleGame extends JFrame{
 		add(label);
 		add(Enter);
 		add(hintcount.Remain());
+		add(nextcount.Remain());
 	}
 	
 	public void paint(Graphics g) {
