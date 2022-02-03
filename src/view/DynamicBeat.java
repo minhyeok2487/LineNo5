@@ -34,10 +34,6 @@ public class DynamicBeat extends JFrame {
 	private ImageIcon MultiBtn = new ImageIcon(GameMain.class.getResource("MultiBtn.png"));
 	private ImageIcon MultiBtnMouseOver = new ImageIcon(GameMain.class.getResource("MultiBtnMouseOver.png"));
 	
-	
-	
-	private ImageIcon Te = new ImageIcon(GameMain.class.getResource("Button.png"));
-	
 	private Image background = new ImageIcon(GameMain.class.getResource("introBackground.jpg")).getImage();
 
 	private JButton playButton = new JButton(PlayBtn);
@@ -130,7 +126,6 @@ public class DynamicBeat extends JFrame {
 				buttonSound.start();
 				playButton.setVisible(false);
 				QuitButton.setVisible(false);
-				//background = new ImageIcon(Main.class.getResource("playBackground.jpg")).getImage();
 				add(Single1Button);
 				add(Single5Button);
 				add(Single10Button);
@@ -199,12 +194,7 @@ public class DynamicBeat extends JFrame {
 				buttonSound.start();
 				// 싱글 1초로 음악맞추기 게임 시작
 				introMusic.close();
-				//Single1Button.setVisible(false);
-				//Single5Button.setVisible(false);
-				//Single10Button.setVisible(false);
-				//MultiButton.setVisible(false);
-				//background = new ImageIcon(GameMain.class.getResource("playBackground.jpg")).getImage();
-				new OneSecondGame();
+				new SingleGame(1);
 				
 			}
 
@@ -232,6 +222,8 @@ public class DynamicBeat extends JFrame {
 				Music buttonSound = new Music("ButtonSound.mp3", false);
 				buttonSound.start();
 				// 싱글 5초로 음악맞추기 게임 시작
+				introMusic.close();
+				new SingleGame(5);
 			}
 			
 			@Override
@@ -258,6 +250,8 @@ public class DynamicBeat extends JFrame {
 				Music buttonSound = new Music("ButtonSound.mp3", false);
 				buttonSound.start();
 				// 싱글 10초로 음악맞추기 게임 시작
+				introMusic.close();
+				new SingleGame(10);
 			}
 			
 			@Override
@@ -299,11 +293,6 @@ public class DynamicBeat extends JFrame {
 				MultiButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		
-		//Enter.setBounds(250,400,400,204);
-		//Enter.setOpaque(false);
-		//label.setBounds(250,400,400,204);
-		
 		
 
 	}

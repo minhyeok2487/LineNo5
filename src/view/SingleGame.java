@@ -8,14 +8,20 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class OneSecondGame extends JFrame{
+import model.PlayWav;
+
+public class SingleGame extends JFrame{
+	int num;
 	private Image screenImage;
 	private Graphics screenGraphic;
 	private Image background = new ImageIcon(GameMain.class.getResource("playBackground.jpg")).getImage();
@@ -43,10 +49,11 @@ public class OneSecondGame extends JFrame{
 	private JTextField Enter = new JTextField(10);
 	private JLabel label = new JLabel();
 	
-	public OneSecondGame() {
+	public SingleGame(int num) {
+		this.num = num;
 		setUndecorated(true);
 		setTitle("Dynamic Beat");
-		setSize(GameMain.SCREEN_WIDTH, GameMain.SCREEN_HEIGHT);
+		setSize(1200, 900);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +61,7 @@ public class OneSecondGame extends JFrame{
 		setBackground(new Color(0, 0, 0, 0));
 		setLayout(null);
 		
-		exitButton.setBounds(1245, 0, 30, 30);
+		exitButton.setBounds(1160, 0, 30, 30);
 		exitButton.setBorderPainted(false);
 		exitButton.setContentAreaFilled(false);
 		exitButton.setFocusPainted(false);
@@ -87,7 +94,7 @@ public class OneSecondGame extends JFrame{
 		});
 		add(exitButton);
 
-		menuBar.setBounds(0, 0, 1280, 30);
+		menuBar.setBounds(0, 0, 1200, 30);
 		menuBar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -105,7 +112,7 @@ public class OneSecondGame extends JFrame{
 		});
 		add(menuBar);
 		
-		NextButton.setBounds(1100, 570, 120, 120);
+		NextButton.setBounds(1000, 570, 120, 120);
 		NextButton.setBorderPainted(false);
 		NextButton.setContentAreaFilled(false);
 		NextButton.setFocusPainted(false);
@@ -139,6 +146,7 @@ public class OneSecondGame extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				Music buttonSound = new Music("ButtonSound.mp3", false);
 				buttonSound.start();
+				playMusic();
 			}
 			
 			@Override
@@ -206,7 +214,7 @@ public class OneSecondGame extends JFrame{
 		});
 		
 		
-		Enter.setBounds(500, 500, 300, 81);
+		Enter.setBounds(500, 600, 300, 81);
 		Font font = new Font("Courier", Font.BOLD,25);
 		Enter.setFont(font);
 		
@@ -229,5 +237,23 @@ public class OneSecondGame extends JFrame{
 		g.drawImage(background, 0, 0, null);
 		paintComponents(g);
 		this.repaint();
+	}
+	
+	public void playMusic() {
+		try {
+			if(num == 1) {
+				new PlayWav("C:/Users/Minhyeok/Desktop/Git/LineNo5/python_MH/audio/OneSecond/");
+			} else if(num == 5) {
+				new PlayWav("C:/Users/Minhyeok/Desktop/Git/LineNo5/python_MH/audio/FiveSecond/");
+			} else if(num == 10) {
+				new PlayWav("C:/Users/Minhyeok/Desktop/Git/LineNo5/python_MH/audio/TenSecond/");
+			}
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (UnsupportedAudioFileException e1) {
+			e1.printStackTrace();
+		}
 	}
 }
