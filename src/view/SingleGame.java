@@ -49,6 +49,9 @@ public class SingleGame extends JFrame{
 	private JTextField Enter = new JTextField(10);
 	private JLabel label = new JLabel();
 	
+	private HintCount hintcount = new HintCount();
+	private NextCount nextcount = new NextCount();
+	
 	public SingleGame(int num) {
 		this.num = num;
 		setUndecorated(true);
@@ -121,6 +124,13 @@ public class SingleGame extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				Music buttonSound = new Music("ButtonSound.mp3", false);
 				buttonSound.start();
+				if(NextCount.count>0) {
+					nextcount.Remain().setVisible(false);
+					NextCount.count = NextCount.count-1;
+					add(nextcount.Remain());
+				} else {
+					System.out.println("다음없음");
+				}
 			}
 			
 			@Override
@@ -163,7 +173,7 @@ public class SingleGame extends JFrame{
 			}
 		});
 		
-		SingerHintButton.setBounds(50, 250, 300, 81);
+		SingerHintButton.setBounds(50, 310, 300, 81);
 		SingerHintButton.setBorderPainted(false);
 		SingerHintButton.setContentAreaFilled(false);
 		SingerHintButton.setFocusPainted(false);
@@ -172,6 +182,13 @@ public class SingleGame extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				Music buttonSound = new Music("ButtonSound.mp3", false);
 				buttonSound.start();
+				if(HintCount.count>0) {
+					hintcount.Remain().setVisible(false);
+					HintCount.count = HintCount.count-1;
+					add(hintcount.Remain());
+				} else {
+					System.out.println("힌트없음");
+				}
 			}
 			
 			@Override
@@ -188,7 +205,7 @@ public class SingleGame extends JFrame{
 			}
 		});
 		
-		SongHintButton.setBounds(50, 350, 300, 81);
+		SongHintButton.setBounds(50, 398, 300, 81);
 		SongHintButton.setBorderPainted(false);
 		SongHintButton.setContentAreaFilled(false);
 		SongHintButton.setFocusPainted(false);
@@ -197,6 +214,14 @@ public class SingleGame extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				Music buttonSound = new Music("ButtonSound.mp3", false);
 				buttonSound.start();
+				if(HintCount.count>0) {
+					hintcount.Remain().setVisible(false);
+					HintCount.count = HintCount.count-1;
+					add(hintcount.Remain());
+				} else {
+					System.out.println("힌트없음");
+				}
+				
 			}
 			
 			@Override
@@ -224,6 +249,8 @@ public class SingleGame extends JFrame{
 		add(SingerHintButton);
 		add(label);
 		add(Enter);
+		add(hintcount.Remain());
+		add(nextcount.Remain());
 	}
 	
 	public void paint(Graphics g) {

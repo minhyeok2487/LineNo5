@@ -66,8 +66,10 @@
   * 싱글 플레이 난이도 3개와 멀티 플레이 선택화면
 
 ## 3. 싱글 게임 화면(구현중)
-![image](https://user-images.githubusercontent.com/76654360/152288555-099b8180-a616-414a-ae46-8a1915d34879.png)
+![image](https://user-images.githubusercontent.com/76654360/152303822-9da3b317-9ef0-4c16-9904-4d91474b86a4.png)
+![image](https://user-images.githubusercontent.com/76654360/152303862-5e74632e-2bcc-4cbb-8437-551f438eed5a.png)
   * 왼쪽 상단 재생 버튼 누르면 랜덤으로 음악재생 (2022_02_03 추가)
+  * 힌트, 넥스트 버튼 작동(2022_02_03 추가)
 
     
 # 2022_02_03 수정사항
