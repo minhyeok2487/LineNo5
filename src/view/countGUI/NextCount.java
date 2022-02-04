@@ -1,32 +1,44 @@
-package view;
+package view.countGUI;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import main.Main;
+
 public class NextCount {
 	public static ImageIcon RemainNext5 = new ImageIcon(
-			"C:/Users/Minhyeok/Desktop/git/LineNo5/src/view/Remain/RemainNext5.png");
+			Main.class.getResource("/view/countGUI/RemainNext5.png"));
 	public static JLabel RemainNext5Label = new JLabel(RemainNext5);
 	public static ImageIcon RemainNext4 = new ImageIcon(
-			"C:/Users/Minhyeok/Desktop/git/LineNo5/src/view/Remain/RemainNext4.png");
+			Main.class.getResource("/view/countGUI/RemainNext4.png"));
 	public static JLabel RemainNext4Label = new JLabel(RemainNext4);
 	public static ImageIcon RemainNext3 = new ImageIcon(
-			"C:/Users/Minhyeok/Desktop/git/LineNo5/src/view/Remain/RemainNext3.png");
+			Main.class.getResource("/view/countGUI/RemainNext3.png"));
 	public static JLabel RemainNext3Label = new JLabel(RemainNext3);
 	public static ImageIcon RemainNext2 = new ImageIcon(
-			"C:/Users/Minhyeok/Desktop/git/LineNo5/src/view/Remain/RemainNext2.png");
+			Main.class.getResource("/view/countGUI/RemainNext2.png"));
 	public static JLabel RemainNext2Label = new JLabel(RemainNext2);
 	public static ImageIcon RemainNext1 = new ImageIcon(
-			"C:/Users/Minhyeok/Desktop/git/LineNo5/src/view/Remain/RemainNext1.png");
+			Main.class.getResource("/view/countGUI/RemainNext1.png"));
 	public static JLabel RemainNext1Label = new JLabel(RemainNext1);
 	public static ImageIcon RemainNext0 = new ImageIcon(
-			"C:/Users/Minhyeok/Desktop/git/LineNo5/src/view/Remain/RemainNext0.png");
+			Main.class.getResource("/view/countGUI/RemainNext0.png"));
 	public static JLabel RemainNext0Label = new JLabel(RemainNext0);
-	public static int count = 5;
+	int count;
 	
 	public NextCount() {
-
+		this.count = 5;
 	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+
 
 	public JLabel Remain() {
 		RemainNext5Label.setBounds(880, 480, 300, 86);
@@ -46,4 +58,6 @@ public class NextCount {
 		}
 		return remain;
 	}
+
+
 }

@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class Client {
+import main.Main;
+
+public class ClientMain {
 	public static void main(String[] args) {
 		Socket socket = null;
 		try {
@@ -14,9 +16,9 @@ public class Client {
 			socket = new Socket(serverIp, 7777);
 			System.out.println("서버에 연결되었습니다.");
 			// 파일 수신용 클래스 생성 및 시작
-			Receiver receiver = new Receiver(socket);
-			receiver.start();
-			new Player();
+			//server.Receiver receiver = new server.Receiver(socket);
+			//receiver.start();
+			new Main();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

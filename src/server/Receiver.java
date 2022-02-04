@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-class Receiver extends Thread {
+public class Receiver extends Thread {
     Socket socket;
     DataInputStream dis = null;
     FileOutputStream fos = null;

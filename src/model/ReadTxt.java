@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+// txt 파일 ArrayList로 만들어서 저장
 public class ReadTxt {
-	public List<String> links;
-	public List<String> names;
-	public List<String> singers;
+	public static List<String> links;
+	public static List<String> names;
+	public static List<String> singers;
 
 	public ReadTxt() throws IOException {
 		links = new ArrayList<String>();

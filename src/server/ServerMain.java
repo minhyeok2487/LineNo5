@@ -11,7 +11,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import youtube.ReadTxt;
 import youtube.Wav;
 
-public class Server {
+public class ServerMain {
 	public static final String fileNm = null;
 	static Random random = new Random();
 	public static void main(String[] args) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
@@ -27,11 +27,12 @@ public class Server {
 				// 연결되면 통신용 소켓 생성
 				socket = serverSocket.accept();
 				System.out.println("클라이언트와 연결되었습니다.");
+				//new SendSingleGame(1, socket);
 				// 파일 전송용 클래스
-				String filePath = "C:/Users/Minhyeok/Desktop/Git/LineNo5/python_MH/audio";
-				String fileNm = wav.sendname;
-				FileSender fs = new FileSender(socket, filePath, fileNm);
-				fs.start();
+				// String filePath = "C:/Users/Minhyeok/Desktop/Git/LineNo5/python_MH/audio";
+				// String fileNm = wav.sendname;
+				// server.FileSender fs = new server.FileSender(socket, filePath, fileNm);
+				// fs.start();
 			}
         } catch (IOException e) {
             e.printStackTrace();
