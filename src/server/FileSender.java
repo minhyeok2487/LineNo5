@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 //파일 전송용 클래스
-class FileSender extends Thread {
+public class FileSender extends Thread {
 
 	String filePath;
 	String fileNm;

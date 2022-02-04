@@ -1,22 +1,26 @@
-package view;
+package view.sounds;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 
 import javazoom.jl.player.Player;
+import main.Main;
 
-public class Music extends Thread{
+
+// 배경음악 재생 쓰레드 클래스
+// 받아온거 따로 수정안함
+public class MusicBackGround extends Thread{
 	private Player player;
 	private boolean isLoop;
 	private File file;
 	private FileInputStream fis;
 	private BufferedInputStream bis;
 	
-	public Music(String name, boolean isLoop) {
+	public MusicBackGround(String name, boolean isLoop) {
 		try {
 			this.isLoop = isLoop;
-			file = new File(GameMain.class.getResource(name).toURI());
+			file = new File(Main.class.getResource(name).toURI());
 			fis = new FileInputStream(file);
 			bis = new BufferedInputStream(fis);
 			player = new Player(bis);
