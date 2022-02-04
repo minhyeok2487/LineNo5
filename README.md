@@ -28,3 +28,4 @@
  * 힌트, 넥스트 버튼 누르고 다른 싱글게임 누르면 카운트 초기화
  * View패키지 정리
  * 멀티 게임 화면 구현
+![image](https://user-images.githubusercontent.com/76654360/152489100-b98f89db-e4d1-40a6-92dd-1cb9252ccf93.png)
