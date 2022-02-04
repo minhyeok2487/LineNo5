@@ -1,8 +1,10 @@
-package model;
+package server;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
+
+import model.ReadTxt;
 
 public class SendSingleGame {
 	private String filePathOne = "../LineNo5/python_MH/audio/OneSecond";
