@@ -31,6 +31,11 @@ public class MultiGameButtons extends JFrame{
 		ImageIcon character4 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character4.png"));
 		JLabel Ch4 = new JLabel(character4);
 		
+		ImageIcon ReadyBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/Readybutton.png"));
+		ImageIcon ReadyBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/ReadybuttonMouseOver.png"));
+		ImageIcon ReadyBtnOn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/ReadybuttonOn.png"));
+		JButton ReadyButton = new JButton(ReadyBtn);
+		
 		JLabel Ch1Name = new JLabel();
 		JLabel Ch2Name = new JLabel();
 		JLabel Ch3Name = new JLabel();
@@ -62,38 +67,71 @@ public class MultiGameButtons extends JFrame{
 			}
 		});
 		
-		Ch1.setBounds(160,340,165,230);
+		ReadyButton.setBounds(210, 50, 300, 153);
+		ReadyButton.setBorderPainted(false);
+		ReadyButton.setContentAreaFilled(false);
+		ReadyButton.setFocusPainted(false);
+		ReadyButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				buttonSound.start();
+				if(ReadyButton.getIcon() != ReadyBtnOn) {
+					ReadyButton.setIcon(ReadyBtnOn);
+				} else if (ReadyButton.getIcon() == ReadyBtnOn){
+					ReadyButton.setIcon(ReadyBtn);
+				}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(ReadyButton.getIcon() != ReadyBtnOn) {
+					ReadyButton.setIcon(ReadyBtn);
+					ReadyButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				}
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(ReadyButton.getIcon() != ReadyBtnOn) {
+					ReadyButton.setIcon(ReadyBtnMouseOver);
+					ReadyButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				}
+			}
+		});
+		
+		
+		Ch1.setBounds(210,430,165,230);
 		Ch1Name.setText("첫번째 플레이어");
 		Ch1Name.setFont(new Font("Courier", Font.BOLD, 20));
 		Ch1Name.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
 		Ch1Name.setBackground(Color.WHITE);
 		Ch1Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch1Name.setBounds(160+7,340+160,165,25);
+		Ch1Name.setBounds(210+7,430+160,165,25);
 		
 		
-		Ch2.setBounds(160+165+80,340,165,230);
+		Ch2.setBounds(210,180,165,230);
 		Ch2Name.setText("두번째 플레이어");
 		Ch2Name.setFont(new Font("Courier", Font.BOLD, 20));
 		Ch2Name.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
 		Ch2Name.setBackground(Color.WHITE);
 		Ch2Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch2Name.setBounds(160+165+80+7,340+160,165,25);
+		Ch2Name.setBounds(217,180+160,165,25);
 		
-		Ch3.setBounds(160+165+80+165+80,340,165,230);
+		Ch3.setBounds(1200-165-120,180,165,230);
 		Ch3Name.setText("세번째 플레이어");
 		Ch3Name.setFont(new Font("Courier", Font.BOLD, 20));
 		Ch3Name.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
 		Ch3Name.setBackground(Color.WHITE);
 		Ch3Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch3Name.setBounds(160+165+80+165+80+7,340+160,165,25);
+		Ch3Name.setBounds(1200-165-120,180+160,165,25);
 		
-		Ch4.setBounds(160+165+80+165+80+165+80,340,165,230);
+		Ch4.setBounds(1200-165-120,430,165,230);
 		Ch4Name.setText("네번째 플레이어");
 		Ch4Name.setFont(new Font("Courier", Font.BOLD, 20));
 		Ch4Name.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
 		Ch4Name.setBackground(Color.WHITE);
 		Ch4Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch4Name.setBounds(160+165+80+165+80+165+80+7,340+160,165,25);
+		Ch4Name.setBounds(1200-165-120,430+160,165,25);
 		
 		Enter.setBounds(500, 600, 300, 81);
 		Font font = new Font("Courier", Font.BOLD,25);
@@ -111,5 +149,6 @@ public class MultiGameButtons extends JFrame{
 		jFrame.add(Ch4Name);
 		jFrame.add(Ch4);
 		jFrame.add(Enter);
+		jFrame.add(ReadyButton);
 	}
 }
