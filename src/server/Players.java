@@ -12,8 +12,8 @@ import javax.swing.JTextField;
 
 import youtube.Wav;
 
-public class Player extends JFrame implements ActionListener {
-	public Player()  {
+public class Players extends JFrame implements ActionListener {
+	public Players()  {
 		JFrame f1 =new JFrame();
 		
 		JButton b1 = new JButton("제출");
