@@ -15,6 +15,7 @@ import main.Main;
 import view.SingleGameFrame;
 import view.countGUI.HintCount;
 import view.countGUI.NextCount;
+import view.photoGUI.addPhoto;
 import view.sounds.MusicBackGround;
 
 public class SingleGameButtons extends JFrame {
@@ -179,6 +180,7 @@ public class SingleGameButtons extends JFrame {
 		jFrame.add(Enter);
 		jFrame.add(hintcount.Remain());
 		jFrame.add(nextcount.Remain());
+		jFrame.add(addPhoto.AddPhoto());
 	}
 
 }
