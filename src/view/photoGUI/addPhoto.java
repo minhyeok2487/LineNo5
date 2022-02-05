@@ -8,16 +8,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import main.Main;
+import model.PlayWav;
 import view.sounds.MusicBackGround;
 
 public class addPhoto{
+	static int num;
+	public addPhoto(int num) {
+		this.num = num+1;
+	}
+	
 	public static JButton AddPhoto() {
-		ImageIcon photo = new ImageIcon(Main.class.getResource("/view/photoGUI/photo/1.jpg"));
-		ImageIcon photoOn = new ImageIcon(Main.class.getResource("/view/photoGUI/photo/Originals/1.jpg"));
+		String N = Integer.toString(num);
+		String fileName = "/view/photoGUI/photo/"+N+".jpg";
+		String OriginfileName = "/view/photoGUI/photo/Originals/"+N+".jpg";
+		ImageIcon photo = new ImageIcon(Main.class.getResource(fileName));
+		ImageIcon photoOn = new ImageIcon(Main.class.getResource(OriginfileName));
 		
 		JButton photoButton = new JButton(photo);
 		
-		photoButton.setBounds(750, 50, 400, 400);
+		photoButton.setBounds(370, 90, 500, 500);
 		photoButton.setBorderPainted(false);
 		photoButton.setContentAreaFilled(false);
 		photoButton.setFocusPainted(false);
@@ -31,12 +40,12 @@ public class addPhoto{
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				photoButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				//photoButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				photoButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				//photoButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		return photoButton;

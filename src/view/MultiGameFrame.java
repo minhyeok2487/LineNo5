@@ -49,7 +49,7 @@ public class MultiGameFrame extends JFrame{
 	
 	public static void playMusic() {
 		try {
-			new PlayWav("/python_MH/audio/OneSecond/");
+			new PlayWav("/python_MH/audio/OneSecond/",1);
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -25,14 +25,14 @@ import view.countGUI.NextCount;
 import view.menuGUI.MenuBar;
 
 public class SingleGameFrame extends JFrame{
-	static int num;
+	public static int num;
 	private Image screenImage;
 	private Graphics screenGraphic;
 	private Image background = new ImageIcon(Main.class.getResource("/view/playBackground.jpg")).getImage();
 	
 	
 	
-	public SingleGameFrame(int num) {
+	public SingleGameFrame(int num) throws IOException {
 		this.num = num;
 		Default.DefaultFrame(this, 1200, 700); // 프레임 디폴트
 		MenuBar.GameMenubar(this); // 상단 메뉴바 추가 메소드
@@ -53,14 +53,14 @@ public class SingleGameFrame extends JFrame{
 		this.repaint();
 	}
 	
-	public static void playMusic() {
+	public static void playMusic(int Num) {
 		try {
 			if(num == 1) {
-				new PlayWav("../LineNo5/python_MH/audio/OneSecond/");
+				new PlayWav("../LineNo5/python_MH/audio/OneSecond/", Num);
 			} else if(num == 5) {
-				new PlayWav("../LineNo5/python_MH/audio/FiveSecond/");
+				new PlayWav("../LineNo5/python_MH/audio/FiveSecond/", Num);
 			} else if(num == 10) {
-				new PlayWav("../LineNo5/python_MH/audio/TenSecond/");
+				new PlayWav("../LineNo5/python_MH/audio/TenSecond/", Num);
 			}
 		} catch (LineUnavailableException e1) {
 			e1.printStackTrace();

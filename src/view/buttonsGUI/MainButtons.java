@@ -4,6 +4,7 @@ import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -113,7 +114,12 @@ public class MainButtons extends JFrame{
 				buttonSound.start();
 				// 싱글 1초로 음악맞추기 게임 시작
 				MainFrame.introMusic.close();
-				new SingleGameFrame(1);
+				try {
+					new SingleGameFrame(1);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 
 			@Override
@@ -139,7 +145,12 @@ public class MainButtons extends JFrame{
 				buttonSound.start();
 				// 싱글 5초로 음악맞추기 게임 시작
 				MainFrame.introMusic.close();
-				new SingleGameFrame(5);
+				try {
+					new SingleGameFrame(5);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 			@Override
@@ -165,7 +176,12 @@ public class MainButtons extends JFrame{
 				buttonSound.start();
 				// 싱글 10초로 음악맞추기 게임 시작
 				MainFrame.introMusic.close();
-				new SingleGameFrame(10);
+				try {
+					new SingleGameFrame(10);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 			@Override

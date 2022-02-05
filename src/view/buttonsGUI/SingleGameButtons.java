@@ -4,6 +4,8 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import main.Main;
+import model.PlayWav;
+import model.ReadTxt;
 import view.SingleGameFrame;
 import view.countGUI.HintCount;
 import view.countGUI.NextCount;
@@ -20,7 +24,7 @@ import view.sounds.MusicBackGround;
 
 public class SingleGameButtons extends JFrame {
 
-	public static void AddSingleGameButtons(JFrame jFrame) {
+	public static void AddSingleGameButtons(JFrame jFrame) throws IOException {
 		ImageIcon NextBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/NextButton.png"));
 		ImageIcon NextBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/NextButtonMouseOver.png"));
 		ImageIcon PlayMusicBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayMusicBtn.png"));
@@ -49,6 +53,11 @@ public class SingleGameButtons extends JFrame {
 			nextcount.setCount(i);
 			nextcount.Remain().setVisible(true);
 		}
+		ReadTxt readtxt = new ReadTxt();
+		Random random = new Random();
+		int N = random.nextInt(readtxt.links.size()-1);
+		SingleGameFrame.playMusic(N);
+		addPhoto ADDPhoto = new addPhoto(N);
 		
 		NextButton.setBounds(1000, 570, 120, 120);
 		NextButton.setBorderPainted(false);
@@ -81,6 +90,7 @@ public class SingleGameButtons extends JFrame {
 			}
 		});
 
+		
 		PlayMusicButton.setBounds(80, 60, 120, 120);
 		PlayMusicButton.setBorderPainted(false);
 		PlayMusicButton.setContentAreaFilled(false);
@@ -90,7 +100,7 @@ public class SingleGameButtons extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 				buttonSound.start();
-				SingleGameFrame.playMusic();
+				SingleGameFrame.playMusic(N);
 			}
 
 			@Override
@@ -168,7 +178,7 @@ public class SingleGameButtons extends JFrame {
 			}
 		});
 
-		Enter.setBounds(500, 600, 300, 81);
+		Enter.setBounds(465, 600, 300, 81);
 		Font font = new Font("Courier", Font.BOLD, 25);
 		Enter.setFont(font);
 
@@ -180,7 +190,7 @@ public class SingleGameButtons extends JFrame {
 		jFrame.add(Enter);
 		jFrame.add(hintcount.Remain());
 		jFrame.add(nextcount.Remain());
-		jFrame.add(addPhoto.AddPhoto());
+		jFrame.add(ADDPhoto.AddPhoto());
 	}
 
 }
