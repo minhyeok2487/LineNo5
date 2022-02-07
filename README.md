@@ -37,5 +37,6 @@
  * 멀티 - 화면 UI 위치 수정
 ![image](https://user-images.githubusercontent.com/76654360/152748830-6c831a11-5955-4227-9986-3d1227f80b59.png)
 ![image](https://user-images.githubusercontent.com/76654360/152748892-fb37e5a8-f20a-490c-8226-8c3a7f81ef24.png)
+![image](https://user-images.githubusercontent.com/76654360/152748973-1706abed-4d1c-4548-b4b4-539fa6a6ce34.png)
 
 
