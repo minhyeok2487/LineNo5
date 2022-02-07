@@ -29,3 +29,14 @@
  * View패키지 정리
  * 멀티 게임 화면 구현
 ![image](https://user-images.githubusercontent.com/76654360/152489100-b98f89db-e4d1-40a6-92dd-1cb9252ccf93.png)
+
+
+# 2022_02_07 수정사항
+ * 싱글 - 힌트 버튼누르면 힌트 보임, 정답 카운트 추가, 타이머 추가
+ * 싱글 - 다음버튼누르거나 정답을 맞추면 가운데 사진이 정답 사진으로 교체
+ * 멀티 - 화면 UI 위치 수정
+![image](https://user-images.githubusercontent.com/76654360/152748830-6c831a11-5955-4227-9986-3d1227f80b59.png)
+![image](https://user-images.githubusercontent.com/76654360/152748892-fb37e5a8-f20a-490c-8226-8c3a7f81ef24.png)
+![image](https://user-images.githubusercontent.com/76654360/152748973-1706abed-4d1c-4548-b4b4-539fa6a6ce34.png)
+
+
