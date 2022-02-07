@@ -116,7 +116,7 @@ public class SingleGameButtons extends JFrame {
 					jFrame.add(nextcount.Remain());
 					N = random.nextInt(30);
 					SingleGameFrame.playMusic(N);
-					photo.setFileName(N);
+					photo.setFileName();
 					photo.setOriginfileName(N);
 					photoButton.setIcon(photo.getPhoto());
 					// 계속 정답을 맞춘다고 가정

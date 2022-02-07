@@ -11,7 +11,7 @@ public class Photo {
 	public Photo(int num) {
 		this.num = num;
 		String N = Integer.toString(num+1);
-		this.fileName = "/view/photoGUI/photo/"+N+".jpg";
+		this.fileName = "/view/photoGUI/photo/main.png";
 		this.OriginfileName = "/view/photoGUI/photo/Originals/"+N+".jpg";
 		this.photo = new ImageIcon(Main.class.getResource(fileName));
 		this.photoOn = new ImageIcon(Main.class.getResource(OriginfileName));
@@ -25,10 +25,8 @@ public class Photo {
 	public String getFileName() {
 		return fileName;
 	}
-	public void setFileName(int num) {
-		this.num = num;
-		String N = Integer.toString(num+1);
-		this.fileName = "/view/photoGUI/photo/"+N+".jpg";
+	public void setFileName() {
+		this.fileName = "/view/photoGUI/photo/main.png";
 		this.photo = new ImageIcon(Main.class.getResource(fileName));
 	}
 	public String getOriginfileName() {
