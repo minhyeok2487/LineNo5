@@ -25,6 +25,7 @@ public class MainFrame extends JFrame {
 	private Image screenImage;
 	private Graphics screenGraphic;
 	private Image background = new ImageIcon(Main.class.getResource("/view/introBackground.jpg")).getImage();
+	// 메인 배경음
 	public static MusicBackGround introMusic = new MusicBackGround("/view/sounds/introMusic.mp3", true);
 
 	public MainFrame() {

@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -18,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import model.CountDown;
 import main.Main;
 import model.PlayWav;
 import view.buttonsGUI.SingleGameButtons;
@@ -30,8 +32,8 @@ public class SingleGameFrame extends JFrame{
 	private Graphics screenGraphic;
 	private Image background = new ImageIcon(Main.class.getResource("/view/playBackground.jpg")).getImage();
 	
-	
-	
+	int HintCount, NextCount, Timer;
+
 	public SingleGameFrame(int num) throws IOException {
 		this.num = num;
 		Default.DefaultFrame(this, 1200, 700); // 프레임 디폴트

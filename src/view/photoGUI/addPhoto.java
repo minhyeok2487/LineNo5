@@ -8,24 +8,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import main.Main;
+import model.Photo;
 import model.PlayWav;
 import view.sounds.MusicBackGround;
 
 public class addPhoto{
 	static int num;
+	public static Photo photo = new Photo(num);
+	public static JButton photoButton = new JButton(photo.getPhoto());
 	public addPhoto(int num) {
-		this.num = num+1;
+		this.num = num;
+		
 	}
 	
-	public static JButton AddPhoto() {
-		String N = Integer.toString(num);
-		String fileName = "/view/photoGUI/photo/"+N+".jpg";
-		String OriginfileName = "/view/photoGUI/photo/Originals/"+N+".jpg";
-		ImageIcon photo = new ImageIcon(Main.class.getResource(fileName));
-		ImageIcon photoOn = new ImageIcon(Main.class.getResource(OriginfileName));
-		
-		JButton photoButton = new JButton(photo);
-		
+	public JButton First() {
+		photoButton = new JButton(photo.getPhoto());
 		photoButton.setBounds(370, 90, 500, 500);
 		photoButton.setBorderPainted(false);
 		photoButton.setContentAreaFilled(false);
@@ -35,7 +32,7 @@ public class addPhoto{
 			public void mousePressed(MouseEvent e) {
 				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 				buttonSound.start();
-				photoButton.setIcon(photoOn);
+				photoButton.setIcon(photo.getPhotoOn());
 			}
 
 			@Override
