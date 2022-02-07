@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import main.Main;
@@ -100,16 +102,16 @@ public class MultiGameButtons extends JFrame{
 		});
 		
 		
-		Ch1.setBounds(210,430,165,230);
+		Ch1.setBounds(150,430,165,230);
 		Ch1Name.setText("첫번째 플레이어");
 		Ch1Name.setFont(new Font("Courier", Font.BOLD, 20));
 		Ch1Name.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
 		Ch1Name.setBackground(Color.WHITE);
 		Ch1Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch1Name.setBounds(210+7,430+160,165,25);
+		Ch1Name.setBounds(217,430+160,165,25);
 		
 		
-		Ch2.setBounds(210,180,165,230);
+		Ch2.setBounds(150,180,165,230);
 		Ch2Name.setText("두번째 플레이어");
 		Ch2Name.setFont(new Font("Courier", Font.BOLD, 20));
 		Ch2Name.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
@@ -117,23 +119,33 @@ public class MultiGameButtons extends JFrame{
 		Ch2Name.setHorizontalAlignment(JLabel.CENTER);
 		Ch2Name.setBounds(217,180+160,165,25);
 		
-		Ch3.setBounds(1200-165-120,180,165,230);
+		Ch3.setBounds(1200-165-200,180,165,230);
 		Ch3Name.setText("세번째 플레이어");
 		Ch3Name.setFont(new Font("Courier", Font.BOLD, 20));
 		Ch3Name.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
 		Ch3Name.setBackground(Color.WHITE);
 		Ch3Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch3Name.setBounds(1200-165-120,180+160,165,25);
+		Ch3Name.setBounds(1200-165-200,180+160,165,25);
 		
-		Ch4.setBounds(1200-165-120,430,165,230);
+		Ch4.setBounds(1200-165-200,430,165,230);
 		Ch4Name.setText("네번째 플레이어");
 		Ch4Name.setFont(new Font("Courier", Font.BOLD, 20));
 		Ch4Name.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
 		Ch4Name.setBackground(Color.WHITE);
 		Ch4Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch4Name.setBounds(1200-165-120,430+160,165,25);
+		Ch4Name.setBounds(1200-165-200,430+160,165,25);
 		
-		Enter.setBounds(500, 600, 300, 81);
+		JTextArea display = new JTextArea("테스트중");
+		Font displayFont = new Font("Serif", Font.BOLD, 20);
+		display.setFont(displayFont);
+		display.setEditable(false);
+		display.setOpaque(true);
+        display.setBackground(new Color(0,0,0,200));
+        display.setForeground(new Color(255,255,255));
+		JScrollPane scroll = new JScrollPane(display);
+		display.setBounds(450, 200, 300, 390);
+		
+		Enter.setBounds(450, 600, 300, 81);
 		Font font = new Font("Courier", Font.BOLD,25);
 		Enter.setFont(font);
 		
@@ -149,6 +161,7 @@ public class MultiGameButtons extends JFrame{
 		jFrame.add(Ch4Name);
 		jFrame.add(Ch4);
 		jFrame.add(Enter);
-		jFrame.add(ReadyButton);
+		jFrame.add(display)
+;		jFrame.add(ReadyButton);
 	}
 }
