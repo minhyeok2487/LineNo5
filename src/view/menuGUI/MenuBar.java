@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import main.Main;
+import model.PlayWav;
 import view.MainFrame;
 import view.buttonsGUI.SingleGameButtons;
 import view.countGUI.NextCount;
@@ -39,6 +40,9 @@ public class MenuBar extends JFrame{
 					Thread.sleep(100);
 				} catch (Exception ex) {
 					ex.printStackTrace();
+				}
+				if(PlayWav.clip != null) {
+					PlayWav.clip.stop();
 				}
 				jframe.dispose();
 			}

@@ -3,12 +3,15 @@ package view.buttonsGUI;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,9 +36,12 @@ import view.sounds.MusicBackGround;
 
 public class SingleGameButtons extends JFrame {
 	public static Random random = new Random();
-	public static int N = random.nextInt(30);
+	public static int N = 0;
 	public static int i = 0;
-	public static void AddSingleGameButtons(JFrame jFrame) throws IOException {
+	public static Photo photo;
+	public static JButton photoButton;
+	public static void AddSingleGameButtons(JFrame jFrame) throws IOException, InterruptedException {
+		N = random.nextInt(30);
 		ImageIcon NextBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/NextButton.png"));
 		ImageIcon NextBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/NextButtonMouseOver.png"));
 		ImageIcon PlayMusicBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayMusicBtn.png"));
@@ -44,7 +50,11 @@ public class SingleGameButtons extends JFrame {
 		ImageIcon SingerHintBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/SingerHintBtnMouseOver.png"));
 		ImageIcon SongHintBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/SongHintBtn.png"));
 		ImageIcon SongHintBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/SongHintBtnMouseOver.png"));
+		ImageIcon SubmitBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/SubmitBtn.png"));
+		ImageIcon SubmitBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/SubmitBtnMouseOver.png"));
 
+		
+		
 		NumberGUI numbergui = new NumberGUI();
 		JLabel NGUI = new JLabel(numbergui.Numbergui(i));
 		
@@ -53,6 +63,7 @@ public class SingleGameButtons extends JFrame {
 		JButton PlayMusicButton = new JButton(PlayMusicBtn);
 		JButton SingerHintButton = new JButton(SingerHintBtn);
 		JButton SongHintButton = new JButton(SongHintBtn);
+		JButton SubmitButton = new JButton(SubmitBtn);
 
 		JTextField Enter = new JTextField(10);
 		JLabel label = new JLabel();
@@ -74,10 +85,8 @@ public class SingleGameButtons extends JFrame {
 		}
 		ReadTxt readtxt = new ReadTxt();
 		
-		SingleGameFrame.playMusic(N);
-		
-		Photo photo = new Photo(N);
-		JButton photoButton = new JButton(photo.getPhoto());
+		photo = new Photo(N);
+		photoButton = new JButton(photo.getPhoto());
 		photoButton.setBounds(370, 90, 500, 500);
 		photoButton.setBorderPainted(false);
 		photoButton.setContentAreaFilled(false);
@@ -119,12 +128,7 @@ public class SingleGameButtons extends JFrame {
 					photo.setFileName();
 					photo.setOriginfileName(N);
 					photoButton.setIcon(photo.getPhoto());
-					// 계속 정답을 맞춘다고 가정
-					boolean answer = true;
-					i++;
-					if(answer == true) {
-						NGUI.setIcon(numbergui.Numbergui(i));
-					}
+					
 				} else {
 					System.out.println("다음없음");
 				}
@@ -154,6 +158,7 @@ public class SingleGameButtons extends JFrame {
 				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 				buttonSound.start();
 				SingleGameFrame.playMusic(N);
+		
 			}
 
 			@Override
@@ -244,9 +249,95 @@ public class SingleGameButtons extends JFrame {
 		HintLabel.setBounds(50, 398+90, 300, 81);
 
 
-		Enter.setBounds(465, 600, 300, 81);
+		Enter.setBounds(430, 590, 300, 81);
 		Font font = new Font("Courier", Font.BOLD, 25);
 		Enter.setFont(font);
+		Action action = new AbstractAction()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					boolean answer = Answer(Enter.getText(), N);
+					MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+					if(answer == true) {
+						buttonSound.start(); // 임시음
+						i++;
+						NGUI.setIcon(numbergui.Numbergui(i));
+						N = random.nextInt(30);
+						SingleGameFrame.playMusic(N);
+						photo.setFileName();
+						photo.setOriginfileName(N);
+						photoButton.setIcon(photo.getPhoto());
+						Enter.setText(null);
+					}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				if(Enter.getText().equals("LineNo5")) {
+					photoButton.setIcon(photo.getPhotoOn());
+					MusicInfo musicinfo = (MusicInfo) MList.get(N);
+					Enter.setText("정답 : "+musicinfo.getSong());
+				}
+			}
+		};
+		
+		Enter.addActionListener( action );
+
+		
+		SubmitButton.setBounds(740, 590, 81, 81);
+		SubmitButton.setBorderPainted(false);
+		SubmitButton.setContentAreaFilled(false);
+		SubmitButton.setFocusPainted(false);
+		SubmitButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				buttonSound.start();
+				try {
+					boolean answer = Answer(Enter.getText(), N);;
+					if(answer == true) {
+						buttonSound.start(); // 임시음
+						//잠시 멈췄다가
+						try{
+						    Thread.sleep(1000);
+						}catch(InterruptedException e1){
+						    e1.printStackTrace();
+						}
+						//다음 게임 시작
+						i++;
+						NGUI.setIcon(numbergui.Numbergui(i));
+						N = random.nextInt(30);
+						SingleGameFrame.playMusic(N);
+						photo.setFileName();
+						photo.setOriginfileName(N);
+						photoButton.setIcon(photo.getPhoto());
+					}
+					if(Enter.getText().equals("LineNo5")) {
+						photoButton.setIcon(photo.getPhotoOn());
+						MusicInfo musicinfo = (MusicInfo) MList.get(N);
+						Enter.setText("정답 : "+musicinfo.getSong());
+					}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				Enter.setText(null);
+			}
+
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				SubmitButton.setIcon(SubmitBtnMouseOver);
+				SubmitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				SubmitButton.setIcon(SubmitBtn);
+				SubmitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		
+		
 
 		jFrame.add(NextButton);
 		jFrame.add(PlayMusicButton);
@@ -259,6 +350,7 @@ public class SingleGameButtons extends JFrame {
 		jFrame.add(hintcount.Remain());
 		jFrame.add(nextcount.Remain());
 		jFrame.add(photoButton);
+		jFrame.add(SubmitButton);
 		
 		TimeBar timeBar;
 		Thread threadBar;
@@ -266,6 +358,29 @@ public class SingleGameButtons extends JFrame {
 		threadBar = new Thread(timeBar);
 		threadBar.start();
 		jFrame.add(timeBar);
+		
+		// 처음 게임 시작
+		SingleGameFrame.playMusic(N);
 	}
+	
+	
+	private static boolean Answer(String text, int num) throws IOException {
+		ArrayList MList = MusicList.musiclist();
+		MusicInfo musicinfo = (MusicInfo) MList.get(num);
+		System.out.println(musicinfo.getSong());
+		boolean check = false;
+		for(int i=0; i<MList.size();i++) {
+			if(musicinfo.getSong().equals(text)) {
+				System.out.println("정답!");
+				check = true;
+				break;
+			}
+		}
+		if(check == false) {
+			System.out.println("땡!");
+		}
+		return check;
+	}
+	
 
 }

@@ -1,6 +1,8 @@
 package model;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -8,18 +10,19 @@ import javax.swing.JLabel;
 
 import view.MultiGameFrame;
 import view.SingleGameFrame;
-import view.buttonsGUI.MainButtons;
 
 public class CountDown extends JLabel implements Runnable {
-	JFrame frameC = new JFrame();
-	JLabel frameL = new JLabel();
+	JLabel CountDownLabel = new JLabel("카운트 다운 시작 준비...");
 	int sc, n;
 
-	public CountDown(int sc, int n) {
-		frameC.setLayout(new FlowLayout());
-		frameC.setBounds(100, 100, 300, 300);
-		frameC.add(frameL);
-		frameC.setVisible(true);
+	public CountDown(int sc, int n, JFrame jFrame) {
+		CountDownLabel.setBounds(310, 100, 660, 160);
+		CountDownLabel.setHorizontalAlignment(JLabel.CENTER);
+		CountDownLabel.setOpaque(true);
+		CountDownLabel.setBackground(new Color(0,0,0,235));
+		CountDownLabel.setForeground(Color.WHITE);
+		CountDownLabel.setFont(new Font("Serif",Font.BOLD,60));
+		jFrame.add(CountDownLabel);
 		this.sc = sc;
 		this.n = n;
 	}
@@ -36,7 +39,7 @@ public class CountDown extends JLabel implements Runnable {
 			   }
 			
 			if (sc > 0) {
-				frameL.setText(sc + "초후에 시작합니다.\n준비하세요");
+				CountDownLabel.setText(sc + "초후에 시작합니다.\n준비하세요");
 				sc--;
 			} else {
 				try {
@@ -51,11 +54,12 @@ public class CountDown extends JLabel implements Runnable {
 					}
 					
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				frameC.setVisible(false);
-				MainButtons.CountDownFrame.setVisible(false);
+				CountDownLabel.setVisible(false);
 				return;
 			  }
         }

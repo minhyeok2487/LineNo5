@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import main.Main;
 import model.CountDown;
@@ -20,8 +21,7 @@ import view.countGUI.NextCount;
 import view.sounds.MusicBackGround;
 
 public class MainButtons extends JFrame{
-	public static JFrame CountDownFrame = new JFrame();
-	Container c = getContentPane();
+	//Container c = getContentPane();
 	
 	public static void AddMainButtons(JFrame jFrame) {
 		ImageIcon PlayBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayBtn.png"));
@@ -44,8 +44,6 @@ public class MainButtons extends JFrame{
 		JButton Single10Button = new JButton(Single10Btn);
 		JButton MultiButton = new JButton(MultiBtn);
 		
-		
-		
 		playButton.setBounds(240, 500, 400, 204);
 		playButton.setBorderPainted(false);
 		playButton.setContentAreaFilled(false);
@@ -61,7 +59,6 @@ public class MainButtons extends JFrame{
 				jFrame.add(Single5Button);
 				jFrame.add(Single10Button);
 				jFrame.add(MultiButton);
-
 			}
 
 			@Override
@@ -88,6 +85,7 @@ public class MainButtons extends JFrame{
 				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 				buttonSound.start();
 				try {
+					// 일정 시간 지난 후 시스템 종료
 					Thread.sleep(100);
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -121,10 +119,10 @@ public class MainButtons extends JFrame{
 				buttonSound.start();
 				// 3초 후, 싱글 1초로 음악맞추기 게임 시작
 				MainFrame.introMusic.close();
-				CountDown com = new CountDown(3,1);
+				CountDown com = new CountDown(3,1, jFrame);
 				Thread thcom = new Thread(com);
 				thcom.start();
-				CountDownFrame.add(com);
+				//CountDownFrame.add(com);
 			}
 
 			@Override
@@ -150,10 +148,10 @@ public class MainButtons extends JFrame{
 				buttonSound.start();
 				// 싱글 5초로 음악맞추기 게임 시작
 				MainFrame.introMusic.close();
-				CountDown com = new CountDown(3,5);
+				CountDown com = new CountDown(3,5, jFrame);
 				Thread thcom = new Thread(com);
 				thcom.start();
-				CountDownFrame.add(com);
+				//CountDownFrame.add(com);
 			}
 			
 			@Override
@@ -179,10 +177,10 @@ public class MainButtons extends JFrame{
 				buttonSound.start();
 				// 싱글 10초로 음악맞추기 게임 시작
 				MainFrame.introMusic.close();
-				CountDown com = new CountDown(3,10);
+				CountDown com = new CountDown(3,10, jFrame);
 				Thread thcom = new Thread(com);
 				thcom.start();
-				CountDownFrame.add(com);
+				//CountDownFrame.add(com);
 			}
 			
 			@Override
@@ -208,10 +206,10 @@ public class MainButtons extends JFrame{
 				buttonSound.start();
 				// 멀티 음악맞추기 게임 시작
 				MainFrame.introMusic.close();
-				CountDown com = new CountDown(3,111);
+				CountDown com = new CountDown(3,111, jFrame);
 				Thread thcom = new Thread(com);
 				thcom.start();
-				CountDownFrame.add(com);
+				//CountDownFrame.add(com);
 			}
 			
 			@Override

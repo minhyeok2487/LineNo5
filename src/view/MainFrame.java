@@ -24,13 +24,17 @@ public class MainFrame extends JFrame {
 
 	private Image screenImage;
 	private Graphics screenGraphic;
+	// 클라이언트 메인 배경화면
 	private Image background = new ImageIcon(Main.class.getResource("/view/introBackground.jpg")).getImage();
-	// 메인 배경음
+	// 클라이언트 메인 배경음
 	public static MusicBackGround introMusic = new MusicBackGround("/view/sounds/introMusic.mp3", true);
 
+	private int width = 1280;
+	private int height = 720;
+	
 	public MainFrame() {
-		Default.DefaultFrame(this, 1280, 700); // 프레임 디폴트
-		MenuBar.MainMenuBar(this); // 상단 메뉴바 추가 메소드
+		Default.DefaultFrame(this, width, height); // 클라이언트 프레임 디폴트 설정
+		MenuBar.MainMenuBar(this); // 클라이언트 상단 메뉴바 추가 메소드
 
 		// 배경음악 재생
 		introMusic.start();
@@ -41,7 +45,7 @@ public class MainFrame extends JFrame {
 	}
 
 	public void paint(Graphics g) {
-		screenImage = createImage(1280, 700);
+		screenImage = createImage(width, height);
 		screenGraphic = screenImage.getGraphics();
 		screenDraw(screenGraphic);
 		g.drawImage(screenImage, 0, 0, null);

@@ -34,7 +34,7 @@ public class SingleGameFrame extends JFrame{
 	
 	int HintCount, NextCount, Timer;
 
-	public SingleGameFrame(int num) throws IOException {
+	public SingleGameFrame(int num) throws IOException, InterruptedException {
 		this.num = num;
 		Default.DefaultFrame(this, 1200, 700); // 프레임 디폴트
 		MenuBar.GameMenubar(this); // 상단 메뉴바 추가 메소드
@@ -56,6 +56,9 @@ public class SingleGameFrame extends JFrame{
 	}
 	
 	public static void playMusic(int Num) {
+		if(PlayWav.clip != null) {
+			PlayWav.clip.stop();
+		}
 		try {
 			if(num == 1) {
 				new PlayWav("../LineNo5/python_MH/audio/OneSecond/", Num);
