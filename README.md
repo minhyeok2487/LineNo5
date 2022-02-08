@@ -39,4 +39,10 @@
 ![image](https://user-images.githubusercontent.com/76654360/152748892-fb37e5a8-f20a-490c-8226-8c3a7f81ef24.png)
 ![image](https://user-images.githubusercontent.com/76654360/152748973-1706abed-4d1c-4548-b4b4-539fa6a6ce34.png)
 
-
+# 2022_02_08 수정사항
+ * 임시 로그인 기능 추가(test아이디 하나있음)
+ * 싱글 - 가운데 사진 정답사진 교체 삭제(이스터에그로 넣음)
+ * 싱글 - 정답입력시 맞추면 넘어가고 점수 +1, 몰라서 다음 버튼 누르면 다음노래로 넘어감
+ * 노래 중복되서 재생되는거 수정됨
+ * "N초후 시작합니다" 따로 프레임 안만들고 메인프레임에 넣음
+![image](https://user-images.githubusercontent.com/76654360/152946295-6a46b3d9-0197-46cb-a105-b22cac618bf8.png)
