@@ -91,25 +91,7 @@ public class SingleGameButtons extends JFrame {
 		photoButton.setBorderPainted(false);
 		photoButton.setContentAreaFilled(false);
 		photoButton.setFocusPainted(false);
-		photoButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
-				buttonSound.start();
-				photoButton.setIcon(photo.getPhotoOn());
-			}
 
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				//photoButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				//photoButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			}
-		});
-		
 		NextButton.setBounds(1000, 570, 120, 120);
 		NextButton.setBorderPainted(false);
 		NextButton.setContentAreaFilled(false);
