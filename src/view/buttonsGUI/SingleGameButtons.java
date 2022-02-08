@@ -279,13 +279,6 @@ public class SingleGameButtons extends JFrame {
 					boolean answer = Answer(Enter.getText(), N);;
 					if(answer == true) {
 						buttonSound.start(); // 임시음
-						//잠시 멈췄다가
-						try{
-						    Thread.sleep(1000);
-						}catch(InterruptedException e1){
-						    e1.printStackTrace();
-						}
-						//다음 게임 시작
 						i++;
 						NGUI.setIcon(numbergui.Numbergui(i));
 						N = random.nextInt(30);
