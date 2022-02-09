@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -43,6 +45,7 @@ public class SingleGameButtons extends JFrame {
 	public static int[] RandArray = RandN(30);
 	public static int Nextnum = 0;
 	public static JLabel NGUI = null;
+
 	public static void AddSingleGameButtons(JFrame jFrame) throws IOException, InterruptedException {
 		N = RandArray[Nextnum];
 		ImageIcon NextBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/NextButton.png"));
@@ -334,13 +337,14 @@ public class SingleGameButtons extends JFrame {
 
 		TimeBar timeBar;
 		Thread threadBar;
-		timeBar = new TimeBar(5,jFrame);
+		timeBar = new TimeBar(120, jFrame);
 		threadBar = new Thread(timeBar);
 		threadBar.start();
 		jFrame.add(timeBar);
 
 		// 처음 게임 시작
 		SingleGameFrame.playMusic(N);
+
 	}
 
 	private static boolean Answer(String text, int num) throws IOException {

@@ -6,11 +6,14 @@ import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
 
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
@@ -26,12 +29,12 @@ import view.buttonsGUI.SingleGameButtons;
 import view.countGUI.NextCount;
 import view.menuGUI.MenuBar;
 
-public class SingleGameFrame extends JFrame{
+public class SingleGameFrame extends JFrame {
 	public static int num;
 	private Image screenImage;
 	private Graphics screenGraphic;
 	private Image background = new ImageIcon(Main.class.getResource("/view/playBackground.jpg")).getImage();
-	
+
 	int HintCount, NextCount, Timer;
 
 	public SingleGameFrame(int num) throws IOException, InterruptedException {
@@ -39,9 +42,10 @@ public class SingleGameFrame extends JFrame{
 		Default.DefaultFrame(this, 1200, 700); // 프레임 디폴트
 		MenuBar.GameMenubar(this); // 상단 메뉴바 추가 메소드
 		SingleGameButtons.AddSingleGameButtons(this); // 싱글 게임 버튼 추가 메소드
-		
+		this.addKeyListener(new UpDown());
+		this.requestFocus();
 	}
-	
+
 	public void paint(Graphics g) {
 		screenImage = createImage(1200, 900);
 		screenGraphic = screenImage.getGraphics();
@@ -54,17 +58,17 @@ public class SingleGameFrame extends JFrame{
 		paintComponents(g);
 		this.repaint();
 	}
-	
+
 	public static void playMusic(int Num) {
-		if(PlayWav.clip != null) {
+		if (PlayWav.clip != null) {
 			PlayWav.clip.stop();
 		}
 		try {
-			if(num == 1) {
+			if (num == 1) {
 				new PlayWav("../LineNo5/python_MH/audio/OneSecond/", Num);
-			} else if(num == 5) {
+			} else if (num == 5) {
 				new PlayWav("../LineNo5/python_MH/audio/FiveSecond/", Num);
-			} else if(num == 10) {
+			} else if (num == 10) {
 				new PlayWav("../LineNo5/python_MH/audio/TenSecond/", Num);
 			}
 		} catch (LineUnavailableException e1) {
@@ -74,5 +78,36 @@ public class SingleGameFrame extends JFrame{
 		} catch (UnsupportedAudioFileException e1) {
 			e1.printStackTrace();
 		}
+	}
+
+	// 키 입력
+	public static class UpDown implements KeyListener {
+		long clipTime= PlayWav.clip.getMicrosecondPosition();
+		FloatControl volume = (FloatControl) PlayWav.clip.getControl(FloatControl.Type.MASTER_GAIN);
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if(e.getKeyCode() == 38) {
+				System.out.println("Up");
+				PlayWav.clip.stop();
+				PlayWav.clip.setMicrosecondPosition(clipTime);
+				volume.setValue(volume.getValue()+1.0f);
+				PlayWav.clip.start();
+			} else if(e.getKeyCode() == 40) {
+				System.out.println("Down");
+				PlayWav.clip.stop();
+				PlayWav.clip.setMicrosecondPosition(clipTime);
+				volume.setValue(volume.getValue()-1.0f);
+				PlayWav.clip.start();
+			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+		}
+
 	}
 }

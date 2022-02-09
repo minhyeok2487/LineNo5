@@ -5,14 +5,17 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import main.Main;
 import view.MultiGameFrame;
 import view.SingleGameFrame;
 
 public class CountDown extends JLabel implements Runnable {
 	JLabel CountDownLabel = new JLabel("카운트 다운 시작 준비...");
+	JLabel label;
 	int sc, n;
 
 	public CountDown(int sc, int n, JFrame jFrame) {
@@ -25,6 +28,11 @@ public class CountDown extends JLabel implements Runnable {
 		jFrame.add(CountDownLabel);
 		this.sc = sc;
 		this.n = n;
+		
+		ImageIcon icon = new ImageIcon(Main.class.getResource("/view/point2.gif"));
+		label = new JLabel(icon);
+		label.setBounds(310-160, 100, 160, 160);
+		jFrame.add(label);
 	}
 
 	@Override
@@ -60,6 +68,7 @@ public class CountDown extends JLabel implements Runnable {
 					e.printStackTrace();
 				}
 				CountDownLabel.setVisible(false);
+				label.setVisible(false);
 				return;
 			  }
         }
