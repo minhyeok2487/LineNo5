@@ -37,7 +37,7 @@ public class MultiGameButtons extends JFrame{
 		ImageIcon ReadyBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/ReadybuttonMouseOver.png"));
 		ImageIcon ReadyBtnOn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/ReadybuttonOn.png"));
 		JButton ReadyButton = new JButton(ReadyBtn);
-		
+
 		JLabel Ch1Name = new JLabel();
 		JLabel Ch2Name = new JLabel();
 		JLabel Ch3Name = new JLabel();

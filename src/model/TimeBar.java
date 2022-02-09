@@ -2,7 +2,10 @@ package model;
 
 import java.awt.Color;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import view.buttonsGUI.SingleGameButtons;
 
 public class TimeBar extends JLabel implements Runnable {
 	
@@ -10,16 +13,19 @@ public class TimeBar extends JLabel implements Runnable {
 	int x = 400, y = 40;
 	Color color = new Color(255, 0, 0);
 	int second;
+	JFrame getFrame;
+	JFrame FinalFrame = new JFrame();
 	public int getGow() {
 		return gow;
 	}
 
-	public TimeBar(int second) {
+	public TimeBar(int second, JFrame jFrame) {
 		setBackground(color);
 		setOpaque(true);
 		setBounds(x, y, width, height);
 		
 		this.second = second;
+		this.getFrame = jFrame;
 	}
 	
 	@Override
@@ -39,6 +45,13 @@ public class TimeBar extends JLabel implements Runnable {
 				
 				break;
 			}
+			
+			if (gow == 0) {
+				getFrame.dispose();
+				FinalFrame.add(SingleGameButtons.NGUI);
+				FinalFrame.setVisible(true);
+			}
+			
 		}
 		
 	}
