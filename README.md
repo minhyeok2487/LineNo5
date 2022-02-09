@@ -52,3 +52,11 @@
  3. 노래 맞췄을 때 맞췄다는걸 표현했으면 좋겠음
 ![image](https://user-images.githubusercontent.com/76654360/152946903-4fdb9b56-3a85-4b38-9d86-7194453d10e1.png)
 ![image](https://user-images.githubusercontent.com/76654360/152946295-6a46b3d9-0197-46cb-a105-b22cac618bf8.png)
+
+# 2022_02_09 수정사항
+ * 싱글 - 넥스트버튼 or 정답 맞출 때 힌트창 초기화
+ * 싱글 - 오답 입력 시 힌트창 초기화
+ * 노래 중복 제거
+ * 타이머 종료되면 노래 게임 종료
+ * "N초후 시작합니다" 옆 GIF 추가
+ ![image](https://user-images.githubusercontent.com/76654360/153159567-52d4f95a-55bb-4364-945b-d59dd1ee9778.png)
