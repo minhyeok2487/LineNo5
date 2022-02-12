@@ -42,11 +42,12 @@ public class SingleGameButtons extends JFrame {
 	public static int i = 0;
 	public static Photo photo;
 	public static JButton photoButton;
-	public static int[] RandArray = RandN(30);
+	public static int[] RandArray;
 	public static int Nextnum = 0;
 	public static JLabel NGUI = null;
 
 	public static void AddSingleGameButtons(JFrame jFrame) throws IOException, InterruptedException {
+		RandArray = RandN(30);
 		N = RandArray[Nextnum];
 		ImageIcon NextBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/NextButton.png"));
 		ImageIcon NextBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/NextButtonMouseOver.png"));

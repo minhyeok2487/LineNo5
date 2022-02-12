@@ -7,16 +7,15 @@ import java.io.FileInputStream;
 import javazoom.jl.player.Player;
 import main.Main;
 
-
 // 배경음악 재생 쓰레드 클래스
 // 받아온거 따로 수정안함
-public class MusicBackGround extends Thread{
+public class MusicBackGround extends Thread {
 	private Player player;
 	private boolean isLoop;
 	private File file;
 	private FileInputStream fis;
 	private BufferedInputStream bis;
-	
+
 	public MusicBackGround(String name, boolean isLoop) {
 		try {
 			this.isLoop = isLoop;
@@ -28,19 +27,20 @@ public class MusicBackGround extends Thread{
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	public int getTime() {
-		if (player == null) 
+		if (player == null)
 			return 0;
 		return player.getPosition();
 	}
-	
+
 	public void close() {
 		isLoop = false;
 		player.close();
 		this.interrupt();
 	}
-	
+
+
 	@Override
 	public void run() {
 		try {
@@ -54,5 +54,5 @@ public class MusicBackGround extends Thread{
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 }

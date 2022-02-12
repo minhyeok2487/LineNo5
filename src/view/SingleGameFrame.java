@@ -26,6 +26,7 @@ import model.CountDown;
 import main.Main;
 import model.PlayWav;
 import view.buttonsGUI.SingleGameButtons;
+import view.buttonsGUI.VolumnButtons;
 import view.countGUI.NextCount;
 import view.menuGUI.MenuBar;
 
@@ -42,8 +43,10 @@ public class SingleGameFrame extends JFrame {
 		Default.DefaultFrame(this, 1200, 700); // 프레임 디폴트
 		MenuBar.GameMenubar(this); // 상단 메뉴바 추가 메소드
 		SingleGameButtons.AddSingleGameButtons(this); // 싱글 게임 버튼 추가 메소드
+		VolumnButtons.AddVolumnButtons(this); // 설정 버튼 추가 메소드
 		this.addKeyListener(new UpDown());
 		this.requestFocus();
+		
 	}
 
 	public void paint(Graphics g) {

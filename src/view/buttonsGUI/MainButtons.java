@@ -1,5 +1,6 @@
 package view.buttonsGUI;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Image;
@@ -7,12 +8,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Set;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import main.Main;
 import model.CountDown;
@@ -23,7 +26,6 @@ import view.countGUI.NextCount;
 import view.sounds.MusicBackGround;
 
 public class MainButtons extends JFrame{
-	//Container c = getContentPane();
 	
 	public static void AddMainButtons(JFrame jFrame) {
 		ImageIcon PlayBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayBtn.png"));
@@ -46,6 +48,7 @@ public class MainButtons extends JFrame{
 		JButton Single10Button = new JButton(Single10Btn);
 		JButton MultiButton = new JButton(MultiBtn);
 		
+
 		playButton.setBounds(240, 500, 400, 204);
 		playButton.setBorderPainted(false);
 		playButton.setContentAreaFilled(false);

@@ -6,10 +6,15 @@ import java.util.Random;
 
 import javax.sound.sampled.*;
 
+import view.buttonsGUI.VolumnButtons;
+
 // 랜덤으로 wav 파일 한곡 재생 클래스
 public class PlayWav {
 	public static boolean isplayed = false;
 	public static Clip clip = null;
+	public static long clipTime;
+	public static FloatControl volume = null;
+	public static int init = 0;
 	String dir;
 	// 경로를 인자로 받음
 	public PlayWav(String dir, int N) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
@@ -20,6 +25,13 @@ public class PlayWav {
 		AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 		clip = AudioSystem.getClip();
 		clip.open(audioStream);
+		clipTime = clip.getMicrosecondPosition();
+		volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		if(init == 0) {
+			volume.setValue(-10.0f);
+		} 
 		clip.start();
+		init++;
+		
 	}
 }
