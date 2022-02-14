@@ -60,3 +60,7 @@
  * 타이머 종료되면 노래 게임 종료
  * "N초후 시작합니다" 옆 GIF 추가
  ![image](https://user-images.githubusercontent.com/76654360/153159567-52d4f95a-55bb-4364-945b-d59dd1ee9778.png)
+
+# 2022_02_14 수정사항
+ * 싱글 - 설정 커든 누를 시 음량조절 패널 
+![image](https://user-images.githubusercontent.com/76654360/153828838-e55e235c-5035-48cb-890b-30cf0da94768.png)
