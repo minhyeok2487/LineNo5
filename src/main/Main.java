@@ -1,11 +1,13 @@
 package main;
 
+import javax.swing.JFrame;
+
 import view.MainFrame;
 import view.login.LoginView;
 
 public class Main {
 	LoginView loginView;
-
+	public static JFrame MA;
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.loginView = new LoginView(); // 로그인창 보이기
@@ -15,6 +17,6 @@ public class Main {
 	// 테스트프레임창
 	public void showFrameTest() {
 		loginView.dispose(); // 로그인창닫기
-		new MainFrame(); // 클라이언트 게임 실행
+		MA = new MainFrame(); // 클라이언트 게임 실행
 	}
 }

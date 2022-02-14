@@ -10,7 +10,8 @@ public class ClientMain {
 	public static void main(String[] args) {
 		Socket socket = null;
 		try {
-			InetAddress ip = InetAddress.getLocalHost();
+			// 본인 ip 받기
+			InetAddress ip = InetAddress.getLocalHost(); 
 			String serverIp = ip.getHostAddress();
 			// 서버연결
 			socket = new Socket(serverIp, 7777);
