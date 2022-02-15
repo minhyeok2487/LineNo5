@@ -37,6 +37,8 @@ import view.photoGUI.addPhoto;
 import view.sounds.MusicBackGround;
 
 public class SingleGameButtons extends JFrame {
+	public static List<String> LastV  = new ArrayList<String>();
+	public static String[] LastIp = new String[30];
 	public static Random random = new Random();
 	public static int N = 0;
 	public static int i = 0;
@@ -45,7 +47,10 @@ public class SingleGameButtons extends JFrame {
 	public static int[] RandArray;
 	public static int Nextnum = 0;
 	public static JLabel NGUI = null;
-
+	public static NumberGUI numbergui = null;
+	public static TimeBar timeBar;
+	public static Thread threadBar;
+	
 	public static void AddSingleGameButtons(JFrame jFrame) throws IOException, InterruptedException {
 		RandArray = RandN(30);
 		N = RandArray[Nextnum];
@@ -63,7 +68,7 @@ public class SingleGameButtons extends JFrame {
 		ImageIcon SubmitBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/SubmitBtn.png"));
 		ImageIcon SubmitBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/SubmitBtnMouseOver.png"));
 
-		NumberGUI numbergui = new NumberGUI();
+		numbergui = new NumberGUI();
 		NGUI = new JLabel(numbergui.Numbergui(i));
 
 		JButton NextButton = new JButton(NextBtn);
@@ -91,7 +96,11 @@ public class SingleGameButtons extends JFrame {
 			nextcount.Remain().setVisible(true);
 		}
 		ReadTxt readtxt = new ReadTxt();
-
+		
+		MusicInfo musicinfo = (MusicInfo) MList.get(N);
+		LastV.add((musicinfo.getSingerHint() +"  -  "+ musicinfo.getSong()));
+		LastIp[Nextnum] = musicinfo.getIp();
+		
 		photo = new Photo(N);
 		photoButton = new JButton(photo.getPhoto());
 		photoButton.setBounds(370, 90, 500, 500);
@@ -114,6 +123,9 @@ public class SingleGameButtons extends JFrame {
 					jFrame.add(nextcount.Remain());
 					Nextnum++;
 					N = RandArray[Nextnum];
+					MusicInfo musicinfo = (MusicInfo) MList.get(N);
+					LastV.add((musicinfo.getSingerHint() +"  -  "+ musicinfo.getSong()));
+					LastIp[Nextnum] = musicinfo.getIp();
 					SingleGameFrame.playMusic(N);
 					photo.setFileName();
 					photo.setOriginfileName(N);
@@ -253,6 +265,9 @@ public class SingleGameButtons extends JFrame {
 						NGUI.setIcon(numbergui.Numbergui(i));
 						Nextnum++;
 						N = RandArray[Nextnum];
+						MusicInfo musicinfo = (MusicInfo) MList.get(N);
+						LastV.add((musicinfo.getSingerHint() +"  -  "+ musicinfo.getSong()));
+						LastIp[Nextnum] = musicinfo.getIp();
 						SingleGameFrame.playMusic(N);
 						photo.setFileName();
 						photo.setOriginfileName(N);
@@ -291,6 +306,9 @@ public class SingleGameButtons extends JFrame {
 						NGUI.setIcon(numbergui.Numbergui(i));
 						Nextnum++;
 						N = RandArray[Nextnum];
+						MusicInfo musicinfo = (MusicInfo) MList.get(N);
+						LastV.add((musicinfo.getSingerHint() +"  -  "+ musicinfo.getSong()));
+						LastIp[Nextnum] = musicinfo.getIp();
 						SingleGameFrame.playMusic(N);
 						photo.setFileName();
 						photo.setOriginfileName(N);
@@ -336,9 +354,8 @@ public class SingleGameButtons extends JFrame {
 		jFrame.add(photoButton);
 		jFrame.add(SubmitButton);
 
-		TimeBar timeBar;
-		Thread threadBar;
-		timeBar = new TimeBar(120, jFrame);
+		
+		timeBar = new TimeBar(5, jFrame);
 		threadBar = new Thread(timeBar);
 		threadBar.start();
 		jFrame.add(timeBar);

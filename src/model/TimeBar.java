@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import view.FinalFrame;
 import view.buttonsGUI.SingleGameButtons;
 
 public class TimeBar extends JLabel implements Runnable {
@@ -14,7 +15,6 @@ public class TimeBar extends JLabel implements Runnable {
 	Color color = new Color(255, 0, 0);
 	int second;
 	JFrame getFrame;
-	JFrame FinalFrame = new JFrame();
 	public int getGow() {
 		return gow;
 	}
@@ -47,9 +47,9 @@ public class TimeBar extends JLabel implements Runnable {
 			}
 			
 			if (gow == 0) {
+				PlayWav.clip.stop();
 				getFrame.dispose();
-				FinalFrame.add(SingleGameButtons.NGUI);
-				FinalFrame.setVisible(true);
+				new FinalFrame();
 			}
 			
 		}

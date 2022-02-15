@@ -3,7 +3,9 @@ package view.sounds;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
+import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 import main.Main;
 
@@ -39,7 +41,10 @@ public class MusicBackGround extends Thread {
 		player.close();
 		this.interrupt();
 	}
-
+	
+	public void ReRun() {
+		
+	}
 
 	@Override
 	public void run() {
@@ -53,6 +58,7 @@ public class MusicBackGround extends Thread {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		isLoop = true;
 	}
 
 }

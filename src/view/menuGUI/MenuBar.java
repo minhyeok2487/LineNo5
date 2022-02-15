@@ -45,6 +45,10 @@ public class MenuBar extends JFrame{
 					PlayWav.clip.stop();
 				}
 				jframe.dispose();
+				if(MainFrame.introMusic.getState() == Thread.State.TERMINATED) {
+					MainFrame.introMusic = new MusicBackGround("/view/sounds/introMusic.mp3", true);
+				}
+				MainFrame.introMusic.start();
 			}
 
 			@Override

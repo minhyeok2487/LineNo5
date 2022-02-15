@@ -29,6 +29,7 @@ public class CountDown extends JLabel implements Runnable {
 		this.sc = sc;
 		this.n = n;
 		
+		// gif 아이콘
 		ImageIcon icon = new ImageIcon(Main.class.getResource("/view/point2.gif"));
 		label = new JLabel(icon);
 		label.setBounds(310-160, 100, 160, 160);
