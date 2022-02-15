@@ -27,9 +27,22 @@ public class PlayWav {
 		clip.open(audioStream);
 		clipTime = clip.getMicrosecondPosition();
 		volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-		if(init == 0) {
+		if(init == 0) { //처음 소리 크기 지정
 			volume.setValue(-10.0f);
-		} 
+		}
+		switch (VolumnButtons.N) {
+		case 0: {volume.setValue(-20.0f); break;}
+		case 1: {volume.setValue(-18.0f); break;}
+		case 2: {volume.setValue(-16.0f); break;}
+		case 3: {volume.setValue(-14.0f); break;}
+		case 4: {volume.setValue(-12.0f); break;}
+		case 5: {volume.setValue(-10.0f); break;}
+		case 6: {volume.setValue(-8.0f); break;}
+		case 7: {volume.setValue(-6.0f); break;}
+		case 8: {volume.setValue(-4.0f); break;}
+		case 9: {volume.setValue(-2.0f); break;}
+		case 10: {volume.setValue(0.0f); break;}
+		}
 		clip.start();
 		init++;
 		

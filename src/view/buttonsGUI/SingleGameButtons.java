@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ import model.Photo;
 import model.PlayWav;
 import model.ReadTxt;
 import model.TimeBar;
+import view.MainFrame;
 import view.SingleGameFrame;
 import view.countGUI.HintCount;
 import view.countGUI.NextCount;
@@ -37,7 +39,7 @@ import view.photoGUI.addPhoto;
 import view.sounds.MusicBackGround;
 
 public class SingleGameButtons extends JFrame {
-	public static List<String> LastV  = new ArrayList<String>();
+	public static List<String> LastV = new ArrayList<String>();
 	public static String[] LastIp = new String[30];
 	public static Random random = new Random();
 	public static int N = 0;
@@ -48,9 +50,8 @@ public class SingleGameButtons extends JFrame {
 	public static int Nextnum = 0;
 	public static JLabel NGUI = null;
 	public static NumberGUI numbergui = null;
-	public static TimeBar timeBar;
-	public static Thread threadBar;
-	
+	public static int mouseX, mouseY;
+
 	public static void AddSingleGameButtons(JFrame jFrame) throws IOException, InterruptedException {
 		RandArray = RandN(30);
 		N = RandArray[Nextnum];
@@ -96,11 +97,11 @@ public class SingleGameButtons extends JFrame {
 			nextcount.Remain().setVisible(true);
 		}
 		ReadTxt readtxt = new ReadTxt();
-		
+
 		MusicInfo musicinfo = (MusicInfo) MList.get(N);
-		LastV.add((musicinfo.getSingerHint() +"  -  "+ musicinfo.getSong()));
+		LastV.add((musicinfo.getSingerHint() + "  -  " + musicinfo.getSong()));
 		LastIp[Nextnum] = musicinfo.getIp();
-		
+
 		photo = new Photo(N);
 		photoButton = new JButton(photo.getPhoto());
 		photoButton.setBounds(370, 90, 500, 500);
@@ -124,7 +125,7 @@ public class SingleGameButtons extends JFrame {
 					Nextnum++;
 					N = RandArray[Nextnum];
 					MusicInfo musicinfo = (MusicInfo) MList.get(N);
-					LastV.add((musicinfo.getSingerHint() +"  -  "+ musicinfo.getSong()));
+					LastV.add((musicinfo.getSingerHint() + "  -  " + musicinfo.getSong()));
 					LastIp[Nextnum] = musicinfo.getIp();
 					SingleGameFrame.playMusic(N);
 					photo.setFileName();
@@ -266,7 +267,7 @@ public class SingleGameButtons extends JFrame {
 						Nextnum++;
 						N = RandArray[Nextnum];
 						MusicInfo musicinfo = (MusicInfo) MList.get(N);
-						LastV.add((musicinfo.getSingerHint() +"  -  "+ musicinfo.getSong()));
+						LastV.add((musicinfo.getSingerHint() + "  -  " + musicinfo.getSong()));
 						LastIp[Nextnum] = musicinfo.getIp();
 						SingleGameFrame.playMusic(N);
 						photo.setFileName();
@@ -307,7 +308,7 @@ public class SingleGameButtons extends JFrame {
 						Nextnum++;
 						N = RandArray[Nextnum];
 						MusicInfo musicinfo = (MusicInfo) MList.get(N);
-						LastV.add((musicinfo.getSingerHint() +"  -  "+ musicinfo.getSong()));
+						LastV.add((musicinfo.getSingerHint() + "  -  " + musicinfo.getSong()));
 						LastIp[Nextnum] = musicinfo.getIp();
 						SingleGameFrame.playMusic(N);
 						photo.setFileName();
@@ -354,11 +355,72 @@ public class SingleGameButtons extends JFrame {
 		jFrame.add(photoButton);
 		jFrame.add(SubmitButton);
 
-		
-		timeBar = new TimeBar(5, jFrame);
-		threadBar = new Thread(timeBar);
+		TimeBar timeBar = new TimeBar(5, jFrame);
+		Thread threadBar = new Thread(timeBar);
 		threadBar.start();
 		jFrame.add(timeBar);
+
+		ImageIcon ExitBtn = new ImageIcon(Main.class.getResource("/view/menuGUI/ExitButton.png"));
+		ImageIcon ExitBtnMouseOver = new ImageIcon(Main.class.getResource("/view/menuGUI/ExitButtonMouseOver.png"));
+		JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("/view/menuGUI/MenuBar.png")));
+		JButton exitButton = new JButton(ExitBtn);
+
+		exitButton.setBounds(1160, 0, 30, 30);
+		exitButton.setBorderPainted(false);
+		exitButton.setContentAreaFilled(false);
+		exitButton.setFocusPainted(false);
+		exitButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				buttonSound.start();
+				try {
+					Thread.sleep(100);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+				if (PlayWav.clip != null) {
+					PlayWav.clip.stop();
+				}
+				jFrame.dispose();
+				if (MainFrame.introMusic.getState() == Thread.State.TERMINATED) {
+					MainFrame.introMusic = new MusicBackGround("/view/sounds/introMusic.mp3", true);
+				}
+				MainFrame.introMusic.start();
+				threadBar.interrupt();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				exitButton.setIcon(ExitBtnMouseOver);
+				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				exitButton.setIcon(ExitBtn);
+				exitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		jFrame.add(exitButton);
+
+		menuBar.setBounds(0, 0, 1200, 30);
+		menuBar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				mouseX = e.getX();
+				mouseY = e.getY();
+			}
+		});
+		menuBar.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int x = e.getXOnScreen();
+				int y = e.getYOnScreen();
+				jFrame.setLocation(x - mouseX, y - mouseY);
+			}
+		});
+		jFrame.add(menuBar);
 
 		// 처음 게임 시작
 		SingleGameFrame.playMusic(N);

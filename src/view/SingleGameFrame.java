@@ -41,10 +41,9 @@ public class SingleGameFrame extends JFrame {
 	public SingleGameFrame(int num) throws IOException, InterruptedException {
 		this.num = num;
 		Default.DefaultFrame(this, 1200, 700); // 프레임 디폴트
-		MenuBar.GameMenubar(this); // 상단 메뉴바 추가 메소드
+		//MenuBar.GameMenubar(this); // 상단 메뉴바 추가 메소드
 		SingleGameButtons.AddSingleGameButtons(this); // 싱글 게임 버튼 추가 메소드
 		VolumnButtons.AddVolumnButtons(this); // 설정 버튼 추가 메소드
-		this.addKeyListener(new UpDown());
 		this.requestFocus();
 		
 	}
@@ -83,34 +82,6 @@ public class SingleGameFrame extends JFrame {
 		}
 	}
 
-	// 키 입력
-	public static class UpDown implements KeyListener {
-		long clipTime= PlayWav.clip.getMicrosecondPosition();
-		FloatControl volume = (FloatControl) PlayWav.clip.getControl(FloatControl.Type.MASTER_GAIN);
-		@Override
-		public void keyPressed(KeyEvent e) {
-			if(e.getKeyCode() == 38) {
-				System.out.println("Up");
-				PlayWav.clip.stop();
-				PlayWav.clip.setMicrosecondPosition(clipTime);
-				volume.setValue(volume.getValue()+1.0f);
-				PlayWav.clip.start();
-			} else if(e.getKeyCode() == 40) {
-				System.out.println("Down");
-				PlayWav.clip.stop();
-				PlayWav.clip.setMicrosecondPosition(clipTime);
-				volume.setValue(volume.getValue()-1.0f);
-				PlayWav.clip.start();
-			}
-		}
 
-		@Override
-		public void keyReleased(KeyEvent e) {
-		}
-
-		@Override
-		public void keyTyped(KeyEvent e) {
-		}
-
-	}
+	
 }

@@ -44,9 +44,7 @@ public class VolumnButtons {
 		JLabel number = new JLabel(Integer.toString(N));
 		number.setFont(new Font("Serif",Font.BOLD,30));
 		number.setForeground(Color.white);
-		//number.setBounds(780, 300, 50, 50);
 		
-		//HighButton.setBounds(780, 210, 48, 48);
 		HighButton.setBorderPainted(false);
 		HighButton.setContentAreaFilled(false);
 		HighButton.setFocusPainted(false);
@@ -56,11 +54,13 @@ public class VolumnButtons {
 				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 				buttonSound.start();
 				if(N < 10 && N >= 0) {
+					Long nowFrame = PlayWav.clip.getMicrosecondPosition();
 					PlayWav.clip.stop();
 					PlayWav.clip.setMicrosecondPosition(PlayWav.clipTime);
 					PlayWav.volume.setValue(PlayWav.volume.getValue() + 2.0f);
 					N++;
 					number.setText(Integer.toString(N));
+					PlayWav.clip.setMicrosecondPosition(nowFrame); 
 					PlayWav.clip.start();
 				}
 				
@@ -79,7 +79,6 @@ public class VolumnButtons {
 			}
 		});
 
-		//LowButton.setBounds(870, 210, 48, 48);
 		LowButton.setBorderPainted(false);
 		LowButton.setContentAreaFilled(false);
 		LowButton.setFocusPainted(false);
@@ -89,11 +88,13 @@ public class VolumnButtons {
 				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 				buttonSound.start();
 				if(N <= 10 && N > 0) {
+					Long nowFrame = PlayWav.clip.getMicrosecondPosition();
 					PlayWav.clip.stop();
 					PlayWav.clip.setMicrosecondPosition(PlayWav.clipTime);
 					PlayWav.volume.setValue(PlayWav.volume.getValue() - 2.0f);
 					N--;
 					number.setText(Integer.toString(N));
+					PlayWav.clip.setMicrosecondPosition(nowFrame);
 					PlayWav.clip.start();
 				}
 			}

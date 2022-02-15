@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,6 +27,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import main.Main;
 import model.CountDown;
+import model.PlayWav;
 import view.buttonsGUI.SingleGameButtons;
 import view.login.UserName;
 import view.menuGUI.MenuBar;
@@ -38,23 +41,99 @@ public class FinalFrame extends JFrame {
 	// 배경 화면
 	private Image FinalBackGround = new ImageIcon("../LineNo5/src/view/playBackground.jpg").getImage();
 	
-	private JLabel gameoverLB = new JLabel(new ImageIcon("../LineNo5/src/view/finalIN/GameOverLB.png"));
+	private ImageIcon ExitBtn2 = new ImageIcon(Main.class.getResource("/view/finalIN/ExitBtn2.png"));
+	private ImageIcon ExitBtn2MouseOver = new ImageIcon(Main.class.getResource("/view/finalIN/ExitBtn2MouseOver.png"));
+	private ImageIcon RetryBtn = new ImageIcon(Main.class.getResource("/view/finalIN/RetryBtn.png"));
+	private ImageIcon RetryBtnMouseOver = new ImageIcon(Main.class.getResource("/view/finalIN/RetryBtnMouseOver.png"));
+	private ImageIcon GoMainBtn = new ImageIcon(Main.class.getResource("/view/finalIN/GoMainBtn.png"));
+	private ImageIcon GoMainBtnMouseOver = new ImageIcon(Main.class.getResource("/view/finalIN/GoMainBtnMouseOver.png"));
+	
+	
 	private JLabel ScoreBackGround = new JLabel(new ImageIcon("../LineNo5/src/view/finalIN/jumReal.gif"));
 	private JLabel ScoreLabel = new JLabel(new ImageIcon("../LineNo5/src/view/finalIN/ok2.png"));
 	private JLabel PlayerName = new JLabel(UserName.user);
 	public static JLabel FinalCountDown = new JLabel("카운트 다운 시작 준비...");
 	
 	int index;
-	JList MusicList;
 	JLabel PlayList;
 	JButton finalExit, reGame, reStart;
-
+	JList MusicList;
+	
+	public static int mouseX, mouseY;
+	
 	public FinalFrame() {
 		// 배경 음악
 		MusicBackGround BackGroundMusic = new MusicBackGround("/view/sounds/BackGroundMusic.mp3", true);
 		BackGroundMusic.start(); // 배경음악 재생
 		Default.DefaultFrame(this, 1200, 720); // 프레임 디폴트
-		MenuBar.GameMenubar(this); // 상단 메뉴바 추가 메소드
+		
+		ImageIcon ExitBtn = new ImageIcon(Main.class.getResource("/view/menuGUI/ExitButton.png"));
+		ImageIcon ExitBtnMouseOver = new ImageIcon(Main.class.getResource("/view/menuGUI/ExitButtonMouseOver.png"));
+		JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("/view/menuGUI/MenuBar.png")));
+		JButton exitButton = new JButton(ExitBtn);
+		
+		exitButton.setBounds(1160, 0, 30, 30);
+		exitButton.setBorderPainted(false);
+		exitButton.setContentAreaFilled(false);
+		exitButton.setFocusPainted(false);
+		exitButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				buttonSound.start();
+				try {
+					Thread.sleep(100);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+				if(PlayWav.clip != null) {
+					PlayWav.clip.stop();
+				}
+				BackGroundMusic.close();
+				dispose();
+				SingleGameButtons.LastV.clear();
+				SingleGameButtons.numbergui.setN(0);
+				SingleGameButtons.i = 0;
+				SingleGameFrame.num = 0;
+				if(MainFrame.introMusic.getState() == Thread.State.TERMINATED) {
+					MainFrame.introMusic = new MusicBackGround("/view/sounds/introMusic.mp3", true);
+				}
+				MainFrame.introMusic.start();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				exitButton.setIcon(ExitBtnMouseOver);
+				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				exitButton.setIcon(ExitBtn);
+				exitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		add(exitButton);
+
+		menuBar.setBounds(0, 0, 1200, 30);
+		menuBar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				mouseX = e.getX();
+				mouseY = e.getY();
+			}
+		});
+		menuBar.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int x = e.getXOnScreen();
+				int y = e.getYOnScreen();
+				setLocation(x - mouseX, y - mouseY);
+			}
+		});
+		add(menuBar);
+		
+		
 		FinalCountDown.setBounds(310, 100, 660, 160);
 		FinalCountDown.setHorizontalAlignment(JLabel.CENTER);
 		FinalCountDown.setOpaque(true);
@@ -82,24 +161,49 @@ public class FinalFrame extends JFrame {
 		ScoreBackGround.setBackground(new Color(0, 0, 0, 100));
 		add(ScoreBackGround);
 
-		finalExit = new JButton("종료하기");
-		finalExit.setBounds(80, 650, 100, 50);
-		add(finalExit);
-
-		finalExit.addActionListener(new ActionListener() {
+		finalExit = new JButton(ExitBtn2);
+		finalExit.setBounds(80, 600, 200, 104);
+		finalExit.setBorderPainted(false);
+		finalExit.setContentAreaFilled(false);
+		finalExit.setFocusPainted(false);
+		finalExit.addMouseListener(new MouseAdapter() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void mousePressed(MouseEvent e) {
+				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				buttonSound.start();
+				try {
+					Thread.sleep(100);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
 				System.exit(0);
 			}
-		});
 
-		reGame = new JButton("다시하기");
-		reGame.setBounds(200, 650, 100, 50);
-		add(reGame);
-
-		reGame.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void mouseEntered(MouseEvent e) {
+				finalExit.setIcon(ExitBtn2MouseOver);
+				finalExit.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				finalExit.setIcon(ExitBtn2);
+				finalExit.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		add(finalExit);
+
+		reGame = new JButton(RetryBtn);
+		reGame.setBounds(80+210, 600, 200, 104);
+		reGame.setBorderPainted(false);
+		reGame.setContentAreaFilled(false);
+		reGame.setFocusPainted(false);
+		reGame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				buttonSound.start();
+				
 				BackGroundMusic.close();
 				dispose();
 				SingleGameButtons.LastV.clear();
@@ -108,18 +212,32 @@ public class FinalFrame extends JFrame {
 				CountDown com = new CountDown(3, SingleGameFrame.num, Main.MA);
 				Thread thcom = new Thread(com);
 				thcom.start();
-				
 			}
-		});
-
-		reStart = new JButton("처음으로");
-		reStart.setBounds(320, 650, 100, 50);
-		add(reStart);
-
-		reStart.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void mouseEntered(MouseEvent e) {
+				reGame.setIcon(RetryBtnMouseOver);
+				reGame.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				reGame.setIcon(RetryBtn);
+				reGame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		add(reGame);
+
+		reStart = new JButton(GoMainBtn);
+		reStart.setBounds(80+210+210, 600, 200, 104);
+		reStart.setBorderPainted(false);
+		reStart.setContentAreaFilled(false);
+		reStart.setFocusPainted(false);
+		reStart.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				buttonSound.start();
 				BackGroundMusic.close();
 				dispose();
 				SingleGameButtons.LastV.clear();
@@ -131,7 +249,20 @@ public class FinalFrame extends JFrame {
 				}
 				MainFrame.introMusic.start();
 			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				reStart.setIcon(GoMainBtnMouseOver);
+				reStart.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				reStart.setIcon(GoMainBtn);
+				reStart.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
 		});
+		add(reStart);
 
 		PlayList = new JLabel("Play List");
 		PlayList.setBounds(700, 200, 300, 50);

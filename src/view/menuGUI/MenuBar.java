@@ -49,6 +49,7 @@ public class MenuBar extends JFrame{
 					MainFrame.introMusic = new MusicBackGround("/view/sounds/introMusic.mp3", true);
 				}
 				MainFrame.introMusic.start();
+				
 			}
 
 			@Override
