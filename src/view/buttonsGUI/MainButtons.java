@@ -1,28 +1,17 @@
 package view.buttonsGUI;
 
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Cursor;
-import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Set;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
+import clientChat.gameClient;
 import main.Main;
 import model.CountDown;
 import view.MainFrame;
-import view.MultiGameFrame;
-import view.SingleGameFrame;
-import view.countGUI.NextCount;
 import view.sounds.MusicBackGround;
 
 public class MainButtons extends JFrame{
@@ -40,6 +29,9 @@ public class MainButtons extends JFrame{
 		ImageIcon Single10BtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/Single10BtnMouseOver.png"));
 		ImageIcon MultiBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/MultiBtn.png"));
 		ImageIcon MultiBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/MultiBtnMouseOver.png"));
+		ImageIcon UpdateBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/updateBtn.png"));
+		ImageIcon UpdateBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/updateBtnMouseOver.png"));
+		
 		
 		JButton playButton = new JButton(PlayBtn);
 		JButton QuitButton = new JButton(QuitBtn);
@@ -47,6 +39,32 @@ public class MainButtons extends JFrame{
 		JButton Single5Button = new JButton(Single5Btn);
 		JButton Single10Button = new JButton(Single10Btn);
 		JButton MultiButton = new JButton(MultiBtn);
+		
+		JButton UpdateButton = new JButton(UpdateBtn);
+		UpdateButton.setBounds(1100, 30, 120, 120);
+		UpdateButton.setBorderPainted(false);
+		UpdateButton.setContentAreaFilled(false);
+		UpdateButton.setFocusPainted(false);
+		UpdateButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// 서버와 연결을 해야된다.
+				new gameClient();
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				UpdateButton.setIcon(UpdateBtn);
+				UpdateButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				UpdateButton.setIcon(UpdateBtnMouseOver);
+				UpdateButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+		});
+		jFrame.add(UpdateButton);
 		
 
 		playButton.setBounds(240, 500, 400, 204);
