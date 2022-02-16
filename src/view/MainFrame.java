@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import clientChat.gameClient;
 import main.Main;
 import view.buttonsGUI.MainButtons;
 import view.countGUI.HintCount;
@@ -33,6 +34,7 @@ public class MainFrame extends JFrame {
 	
 	
 	public MainFrame() {
+		new gameClient(); // 클라이언트 접속
 		Default.DefaultFrame(this, width, height); // 클라이언트 프레임 디폴트 설정
 		MenuBar.MainMenuBar(this); // 클라이언트 상단 메뉴바 추가 메소드
 
