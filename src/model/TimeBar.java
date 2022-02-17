@@ -47,7 +47,7 @@ public class TimeBar extends JLabel implements Runnable {
         	if (gow == 0 && !Thread.currentThread().isInterrupted()) {
     			PlayWav.clip.stop();
     			getFrame.dispose();
-    			new FinalFrame();
+    			new FinalFrame(); 
     		}
         }
 	}	

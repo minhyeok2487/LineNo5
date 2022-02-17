@@ -33,7 +33,7 @@ public class gameClient {
 	private String serverIp = "172.30.1.17";
 	Scanner scan = new Scanner(System.in);
 	
-	public gameClient() {
+	public gameClient() { 
 		try {
 			// 클라이언트 실행시 서버와 접속.			
 			socket = new Socket(InetAddress.getLocalHost(), 8888);

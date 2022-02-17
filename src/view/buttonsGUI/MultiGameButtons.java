@@ -19,6 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import clientChat.gameClient;
+import clientChat.gameClientReadMsg;
 import main.Main;
 import view.MultiGameFrame;
 import view.sounds.MusicBackGround;
@@ -47,6 +48,13 @@ public class MultiGameButtons extends JFrame {
 	public static JLabel Ch3Name = new JLabel();
 	public static JLabel Ch4Name = new JLabel();
 
+	public static ImageIcon PlayMusicBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayMusicBtn.png"));
+	public static ImageIcon PlayMusicBtnMouseOver = new ImageIcon(
+			Main.class.getResource("/view/buttonsGUI/PlayMusicBtnMouseOver.png"));
+	public static ImageIcon PlayMusicOff = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayMusicOff.png"));
+	public static JButton PlayMusicButton = new JButton(PlayMusicBtn);
+	public static JLabel PlayMusicButtonOff = new JLabel(PlayMusicOff);
+	
 	public static ImageIcon ReadyBtn;
 	public static ImageIcon ReadyBtnMouseOver;
 	public static ImageIcon ReadyBtnOn;
@@ -69,11 +77,11 @@ public class MultiGameButtons extends JFrame {
 	public static void AddMultiGameButtons(JFrame jFrame) {
 		a = jFrame;
 
-		ImageIcon PlayMusicBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayMusicBtn.png"));
-		ImageIcon PlayMusicBtnMouseOver = new ImageIcon(
-				Main.class.getResource("/view/buttonsGUI/PlayMusicBtnMouseOver.png"));
-		JButton PlayMusicButton = new JButton(PlayMusicBtn);
-
+		PlayMusicButton.setVisible(false);
+		PlayMusicButtonOff.setBounds(80, 60, 120, 120);
+		PlayMusicButtonOff.setVisible(true);
+		
+		
 		useField();
 
 		PlayMusicButton.setBounds(80, 60, 120, 120);
@@ -85,7 +93,6 @@ public class MultiGameButtons extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 				buttonSound.start();
-				MultiGameFrame.playMusic();
 			}
 
 			@Override
@@ -108,6 +115,7 @@ public class MultiGameButtons extends JFrame {
 		chatArea();
 
 		jFrame.add(PlayMusicButton);
+		jFrame.add(PlayMusicButtonOff);
 		jFrame.add(Ch1Name);
 		jFrame.add(Ch1);
 		jFrame.add(Ch2Name);

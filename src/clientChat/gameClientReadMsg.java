@@ -15,12 +15,14 @@ public class gameClientReadMsg extends Thread {
 	Socket socket = gameClient.getSocket();
 	BufferedReader br;
 	MusicPlayer musicPlayer;
+	public static boolean GameIng = false; 
+
 	public static ArrayList<Integer> serverSongRandom;
 	StringTokenizer StringTZ;
 
 	public gameClientReadMsg(BufferedReader br) {
 		this.br = br;
-		start();
+		start(); 
 	}
 	
 	@Override
@@ -33,7 +35,9 @@ public class gameClientReadMsg extends Thread {
 				{
 					musicPlayer = new MusicPlayer();
 //					musicPlayer.musicStart();
-					
+					// 재생버튼 활성화 할지 안할지
+					MultiGameButtons.PlayMusicButtonOff.setVisible(false);
+					MultiGameButtons.PlayMusicButton.setVisible(true);
 				} 
 				else if(serverMsg.equals("next")) {
 					System.out.println("change flag ......");
@@ -69,5 +73,13 @@ public class gameClientReadMsg extends Thread {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public static boolean isGameIng() {
+		return GameIng;
+	}
+
+	public static void setGameIng(boolean gameIng) {
+		GameIng = gameIng;
 	}
 }
