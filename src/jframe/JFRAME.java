@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.BufferedWriter;
 import java.net.URI;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class JFRAME extends JFrame {
 	private static String readChatting;
 	public static JTextArea chatChang;
 	private Image SCI;
-	private Graphics SCG;
+	private Graphics SCG; 
 	private Image FinalBackGround = new ImageIcon("../LineNo5_mh/src/view/playBackground.jpg").getImage();
 	private JLabel menuB = new JLabel(new ImageIcon("../LineNo5_mh/src/view/menuGUI/MenuBar.png"));
 	private ImageIcon exitover = new ImageIcon("../LineNo5_mh/src/view/menuGUI/ExitButtonMouseOver.png");
@@ -165,7 +166,12 @@ public class JFRAME extends JFrame {
 					e1.printStackTrace();
 				}
 				dispose();
-				new MainFrame();								
+				try {
+					new MainFrame();
+				} catch (UnknownHostException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}								
 				//MainFrame.introMusic.start();
 			}
 			public void resetList() {

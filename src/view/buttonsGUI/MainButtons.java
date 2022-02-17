@@ -3,10 +3,13 @@ package view.buttonsGUI;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import clientChat.gameClient;
 import main.Main;
@@ -15,8 +18,9 @@ import view.MainFrame;
 import view.sounds.MusicBackGround;
 
 public class MainButtons extends JFrame{
+	private static final String HOST = "127.0.0.1";
 	
-	public static void AddMainButtons(JFrame jFrame) {
+	public static void AddMainButtons(JFrame jFrame) throws UnknownHostException {
 		ImageIcon PlayBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayBtn.png"));
 		ImageIcon PlayBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayBtnMouseOver.png"));
 		ImageIcon QuitBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/QuitBtn.png"));
@@ -29,8 +33,11 @@ public class MainButtons extends JFrame{
 		ImageIcon Single10BtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/Single10BtnMouseOver.png"));
 		ImageIcon MultiBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/MultiBtn.png"));
 		ImageIcon MultiBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/MultiBtnMouseOver.png"));
+		ImageIcon MultiBtnOff = new ImageIcon(Main.class.getResource("/view/buttonsGUI/MultiBtnOff.png"));
 		ImageIcon UpdateBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/updateBtn.png"));
 		ImageIcon UpdateBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/updateBtnMouseOver.png"));
+		ImageIcon UpdateBtnOff = new ImageIcon(Main.class.getResource("/view/buttonsGUI/UpdateBtnOff.png"));
+		
 		
 		
 		JButton playButton = new JButton(PlayBtn);
@@ -39,6 +46,15 @@ public class MainButtons extends JFrame{
 		JButton Single5Button = new JButton(Single5Btn);
 		JButton Single10Button = new JButton(Single10Btn);
 		JButton MultiButton = new JButton(MultiBtn);
+		
+		JLabel MultiButtonOff = new JLabel(MultiBtnOff);
+		MultiButtonOff.setBounds(650, 504, 400, 204);
+		
+		
+		JLabel UpdateButtonOff = new JLabel(UpdateBtnOff);
+		UpdateButtonOff.setBounds(1100, 30, 120, 120);
+		jFrame.add(UpdateButtonOff);
+		
 		
 		JButton UpdateButton = new JButton(UpdateBtn);
 		UpdateButton.setBounds(1100, 30, 120, 120);
@@ -66,6 +82,20 @@ public class MainButtons extends JFrame{
 		});
 		jFrame.add(UpdateButton);
 		
+		// 인터넷 연결 상태 체크
+		boolean isConnected = !HOST.equals(InetAddress.getLocalHost().getHostAddress().toString());
+		if (isConnected) { // 연결이 되있으면
+			UpdateButtonOff.setVisible(false);
+			UpdateButton.setVisible(true);
+			MultiButtonOff.setVisible(false);
+			MultiButton.setVisible(true);
+		} else { // 연결이 안되어있으면
+			UpdateButtonOff.setVisible(true);
+			UpdateButton.setVisible(false);
+			MultiButtonOff.setVisible(true);
+			MultiButton.setVisible(false);
+		}
+		
 
 		playButton.setBounds(240, 500, 400, 204);
 		playButton.setBorderPainted(false);
@@ -82,6 +112,7 @@ public class MainButtons extends JFrame{
 				jFrame.add(Single5Button);
 				jFrame.add(Single10Button);
 				jFrame.add(MultiButton);
+				jFrame.add(MultiButtonOff);
 			}
 
 			@Override
@@ -246,4 +277,6 @@ public class MainButtons extends JFrame{
 			}
 		});
 	}
+	
+
 }

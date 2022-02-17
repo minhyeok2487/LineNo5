@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
+import java.net.UnknownHostException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,7 +34,7 @@ public class MainFrame extends JFrame {
 	private int height = 720;
 	
 	
-	public MainFrame() {
+	public MainFrame() throws UnknownHostException {
 		new gameClient(); // 클라이언트 접속
 		Default.DefaultFrame(this, width, height); // 클라이언트 프레임 디폴트 설정
 		MenuBar.MainMenuBar(this); // 클라이언트 상단 메뉴바 추가 메소드
@@ -43,7 +44,7 @@ public class MainFrame extends JFrame {
 		
 		// 메인 버튼 추가 메소드
 		MainButtons.AddMainButtons(this);
-		
+		 
 	}
 
 	public void paint(Graphics g) {

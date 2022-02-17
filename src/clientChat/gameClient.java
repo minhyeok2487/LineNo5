@@ -34,7 +34,7 @@ public class gameClient {
 	Scanner scan = new Scanner(System.in);
 	
 	public gameClient() { 
-		try {
+		try { 
 			// 클라이언트 실행시 서버와 접속.			
 			socket = new Socket(InetAddress.getLocalHost(), 8888);
 			System.out.println("접속 되었습니다");

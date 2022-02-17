@@ -1,5 +1,7 @@
 package main;
 
+import java.net.UnknownHostException;
+
 import javax.swing.JFrame;
 
 import view.MainFrame;
@@ -15,7 +17,7 @@ public class Main {
 	}
 
 	// 테스트프레임창
-	public void showFrameTest() {
+	public void showFrameTest() throws UnknownHostException { 
 		loginView.dispose(); // 로그인창닫기
 		MA = new MainFrame(); // 클라이언트 게임 실행
 	}
