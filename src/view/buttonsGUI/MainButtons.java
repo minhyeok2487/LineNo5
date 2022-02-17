@@ -145,7 +145,6 @@ public class MainButtons extends JFrame{
 				CountDown com = new CountDown(3,1, jFrame);
 				Thread thcom = new Thread(com);
 				thcom.start();
-				//CountDownFrame.add(com);
 			}
 
 			@Override

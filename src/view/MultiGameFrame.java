@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import main.Main;
 import model.PlayWav;
 import view.buttonsGUI.MultiGameButtons;
+import view.buttonsGUI.VolumnButtons;
 import view.menuGUI.MenuBar;
 
 public class MultiGameFrame extends JFrame{
@@ -32,6 +33,7 @@ public class MultiGameFrame extends JFrame{
 		Default.DefaultFrame(this, 1200, 700); // 프레임 디폴트
 		MenuBar.GameMenubar(this); // 상단 메뉴바 추가 메소드
 		MultiGameButtons.AddMultiGameButtons(this); // 멀티 게임 버튼 추가 메소드
+		VolumnButtons.MultiVolumnButtons(this); // 설정 버튼 추가 메소드
 	}
 	
 	public void paint(Graphics g) {

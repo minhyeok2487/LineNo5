@@ -75,7 +75,7 @@ public class FinalFrame extends JFrame {
 		exitButton.setBounds(1160, 0, 30, 30);
 		exitButton.setBorderPainted(false);
 		exitButton.setContentAreaFilled(false);
-		exitButton.setFocusPainted(false);
+		exitButton.setFocusPainted(false); 
 		exitButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -203,9 +203,9 @@ public class FinalFrame extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 				buttonSound.start();
-				
 				BackGroundMusic.close();
 				dispose();
+				Main.MA.setState(JFrame.NORMAL);
 				SingleGameButtons.LastV.clear();
 				SingleGameButtons.numbergui.setN(0);
 				SingleGameButtons.i = 0;
@@ -240,6 +240,7 @@ public class FinalFrame extends JFrame {
 				buttonSound.start();
 				BackGroundMusic.close();
 				dispose();
+				Main.MA.setState(JFrame.NORMAL);
 				SingleGameButtons.LastV.clear();
 				SingleGameButtons.numbergui.setN(0);
 				SingleGameButtons.i = 0;

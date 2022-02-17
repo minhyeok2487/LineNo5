@@ -8,6 +8,8 @@ import java.util.Random;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.FloatControl;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,8 +17,13 @@ import org.json.simple.JSONObject;
 import clientChat.gameClient;
 import clientChat.gameClientReadMsg;
 import view.buttonsGUI.MultiGameButtons;
+import view.buttonsGUI.VolumnButtons;
 
 public class MusicPlayer extends Thread {
+	public static Clip ParentSong = null;
+	public static long clipTime;
+	public static FloatControl volume = null;
+	public static int init = 0;
 	public static String musicjsonpath = "src\\music\\song_json_data.json";
 	MusicInfo musicPath;
 	ArrayList<MusicInfo> listInfo = new ArrayList<>();
@@ -43,8 +50,6 @@ public class MusicPlayer extends Thread {
 		flagIf = true;
 		
 		int index = 0;
-		
-		
 		while(index < 10) {
 			flag = getFlag();
 
@@ -56,11 +61,31 @@ public class MusicPlayer extends Thread {
 			}
 			
 			if(flagIf) {
+				if(ParentSong != null) {
+					ParentSong.stop();
+				}
 				musicPath = null;
-				
 				musicPath = getMusicListInfo().get(songRandomIntList.get(index));
-				
-				musicStart(musicPath);
+				ParentSong = musicStart(musicPath);
+				ParentSong.start();
+				clipTime = ParentSong.getMicrosecondPosition();
+				volume = (FloatControl) ParentSong.getControl(FloatControl.Type.MASTER_GAIN);
+				if(init == 0) { //처음 소리 크기 지정
+					volume.setValue(-10.0f);
+				}
+				switch (VolumnButtons.N) {
+				case 0: {volume.setValue(-20.0f); break;}
+				case 1: {volume.setValue(-18.0f); break;}
+				case 2: {volume.setValue(-16.0f); break;}
+				case 3: {volume.setValue(-14.0f); break;}
+				case 4: {volume.setValue(-12.0f); break;}
+				case 5: {volume.setValue(-10.0f); break;}
+				case 6: {volume.setValue(-8.0f); break;}
+				case 7: {volume.setValue(-6.0f); break;}
+				case 8: {volume.setValue(-4.0f); break;}
+				case 9: {volume.setValue(-2.0f); break;}
+				case 10: {volume.setValue(0.0f); break;}
+				}
 				new Game(musicPath);
 				flagIf = false;
 				index++;
@@ -104,17 +129,17 @@ public class MusicPlayer extends Thread {
 //		songRandomIntList.clear();
 //	}
 	
-	public void musicStart(MusicInfo musicPath) {
+	public Clip musicStart(MusicInfo musicPath) {
 		File musicFile = new File(musicPath.path);
+		Clip c = null;
 		try {
 			AudioInputStream b = AudioSystem.getAudioInputStream(musicFile);
-			Clip c = AudioSystem.getClip();
+			c = AudioSystem.getClip();
 			c.open(b);
-			c.start();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return c;
 	}
 
 }

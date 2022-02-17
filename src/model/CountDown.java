@@ -61,6 +61,7 @@ public class CountDown extends JLabel implements Runnable {
 					} else {
 						new MultiGameFrame();
 					}
+					Main.MA.setState(JFrame.ICONIFIED);
 					
 				} catch (IOException e1) {
 					e1.printStackTrace();
