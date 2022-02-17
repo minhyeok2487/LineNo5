@@ -50,7 +50,7 @@ public class SingleGameButtons extends JFrame {
 	public static int Nextnum = 0;
 	public static JLabel NGUI = null;
 	public static NumberGUI numbergui = null;
-	public static int mouseX, mouseY;
+	public static int mouseX, mouseY; 
 
 	public static void AddSingleGameButtons(JFrame jFrame) throws IOException, InterruptedException {
 		RandArray = RandN(30);
@@ -83,7 +83,7 @@ public class SingleGameButtons extends JFrame {
 
 		ArrayList MList = MusicList.musiclist();
 
-		AutoLabel HintLabel = new AutoLabel("힌트 없음");
+		AutoLabel HintLabel = new AutoLabel("힌트 표시 창");
 
 		HintCount hintcount = new HintCount();
 		for (int i = 0; i < 6; i++) {
@@ -259,9 +259,9 @@ public class SingleGameButtons extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					boolean answer = Answer(Enter.getText(), N);
-					MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 					if (answer == true) {
-						buttonSound.start(); // 임시음
+						MusicBackGround AnswerSound = new MusicBackGround("/view/sounds/Answer.mp3", false);
+						AnswerSound.start();
 						i++;
 						NGUI.setIcon(numbergui.Numbergui(i));
 						Nextnum++;
@@ -274,9 +274,11 @@ public class SingleGameButtons extends JFrame {
 						photo.setOriginfileName(N);
 						photoButton.setIcon(photo.getPhoto());
 						Enter.setText(null);
-						HintLabel.setText("힌트 없음");
+						HintLabel.setText("힌트 표시 창");
 						HintLabel.resize();
 					} else if (answer == false && !Enter.getText().equals("LineNo5")) {
+						MusicBackGround AnswerSound = new MusicBackGround("/view/sounds/땡.mp3", false);
+						AnswerSound.start();
 						Enter.setText(null);
 					} else if (Enter.getText().equals("LineNo5")) {
 						photoButton.setIcon(photo.getPhotoOn());
@@ -300,9 +302,9 @@ public class SingleGameButtons extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				try {
 					boolean answer = Answer(Enter.getText(), N);
-					MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 					if (answer == true) {
-						buttonSound.start(); // 임시음
+						MusicBackGround AnswerSound = new MusicBackGround("/view/sounds/Answer.mp3", true);
+						AnswerSound.start();
 						i++;
 						NGUI.setIcon(numbergui.Numbergui(i));
 						Nextnum++;
@@ -315,9 +317,11 @@ public class SingleGameButtons extends JFrame {
 						photo.setOriginfileName(N);
 						photoButton.setIcon(photo.getPhoto());
 						Enter.setText(null);
-						HintLabel.setText("힌트 없음");
+						HintLabel.setText("힌트 표시 창");
 						HintLabel.resize();
 					} else if (answer == false && !Enter.getText().equals("LineNo5")) {
+						MusicBackGround AnswerSound = new MusicBackGround("/view/sounds/땡.mp3", false);
+						AnswerSound.start();
 						Enter.setText(null);
 					} else if (Enter.getText().equals("LineNo5")) {
 						photoButton.setIcon(photo.getPhotoOn());
@@ -355,7 +359,7 @@ public class SingleGameButtons extends JFrame {
 		jFrame.add(photoButton);
 		jFrame.add(SubmitButton);
 
-		TimeBar timeBar = new TimeBar(5, jFrame);
+		TimeBar timeBar = new TimeBar(60, jFrame);
 		Thread threadBar = new Thread(timeBar);
 		threadBar.start();
 		jFrame.add(timeBar);
@@ -382,10 +386,12 @@ public class SingleGameButtons extends JFrame {
 				if (PlayWav.clip != null) {
 					PlayWav.clip.stop();
 				}
+				SingleGameButtons.i = 0;
 				jFrame.dispose();
 				if (MainFrame.introMusic.getState() == Thread.State.TERMINATED) {
 					MainFrame.introMusic = new MusicBackGround("/view/sounds/introMusic.mp3", true);
 				}
+				Main.MA.setState(JFrame.NORMAL); 
 				MainFrame.introMusic.start();
 				threadBar.interrupt();
 			}

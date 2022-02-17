@@ -82,7 +82,7 @@ public class FinalFrame extends JFrame {
 				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
 				buttonSound.start();
 				try {
-					Thread.sleep(100);
+					Thread.sleep(100); 
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
@@ -99,6 +99,7 @@ public class FinalFrame extends JFrame {
 					MainFrame.introMusic = new MusicBackGround("/view/sounds/introMusic.mp3", true);
 				}
 				MainFrame.introMusic.start();
+				Main.MA.setState(JFrame.NORMAL);
 			}
 
 			@Override

@@ -19,7 +19,7 @@ public class MusicBackGround extends Thread {
 	private BufferedInputStream bis;
 
 	public MusicBackGround(String name, boolean isLoop) {
-		try {
+		try { 
 			this.isLoop = isLoop;
 			file = new File(Main.class.getResource(name).toURI());
 			fis = new FileInputStream(file);
@@ -58,7 +58,6 @@ public class MusicBackGround extends Thread {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		isLoop = true;
 	}
 
 }
