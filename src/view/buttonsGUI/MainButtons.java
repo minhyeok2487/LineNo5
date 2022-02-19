@@ -114,13 +114,11 @@ public class MainButtons extends JFrame{
 				jFrame.add(MultiButton);
 				jFrame.add(MultiButtonOff);
 			}
-
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				playButton.setIcon(PlayBtnMouseOver);
 				playButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
-
 			@Override
 			public void mouseExited(MouseEvent e) {
 				playButton.setIcon(PlayBtn);

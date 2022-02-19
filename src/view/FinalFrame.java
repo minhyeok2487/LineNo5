@@ -40,7 +40,7 @@ public class FinalFrame extends JFrame {
 	
 	// 배경 화면
 	private Image FinalBackGround = new ImageIcon("../LineNo5/src/view/playBackground.jpg").getImage();
-	
+	 
 	private ImageIcon ExitBtn2 = new ImageIcon(Main.class.getResource("/view/finalIN/ExitBtn2.png"));
 	private ImageIcon ExitBtn2MouseOver = new ImageIcon(Main.class.getResource("/view/finalIN/ExitBtn2MouseOver.png"));
 	private ImageIcon RetryBtn = new ImageIcon(Main.class.getResource("/view/finalIN/RetryBtn.png"));

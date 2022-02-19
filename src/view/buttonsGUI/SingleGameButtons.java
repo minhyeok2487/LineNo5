@@ -163,13 +163,11 @@ public class SingleGameButtons extends JFrame {
 				SingleGameFrame.playMusic(N);
 
 			}
-
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				PlayMusicButton.setIcon(PlayMusicBtnMouseOver);
 				PlayMusicButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
-
 			@Override
 			public void mouseExited(MouseEvent e) {
 				PlayMusicButton.setIcon(PlayMusicBtn);
