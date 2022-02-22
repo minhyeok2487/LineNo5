@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import main.R;
+import model.PlayWav;
 import view.buttonsGUI.MultiGameButtons;
 import view.sounds.MusicBackGround;
 
@@ -23,7 +24,7 @@ public class MultiGameFrame extends JFrame {
 	public MultiGameFrame() {
 		new Default(this, R.GameWidth, R.GameHeight); // 프레임 디폴트
 		MultiGameButtons.AddMultiGameButtons(this); // 멀티 게임 버튼 추가 메소드
-		VolumnButtons.MultiVolumnButtons(this); // 설정 버튼 추가 메소드
+		//VolumnButtons.MultiVolumnButtons(this); // 설정 버튼 추가 메소드
 
 		// 오른쪽 상단 종료 버튼 추가
 		JButton exitButton = new JButton(R.ExitBtn);
@@ -36,6 +37,20 @@ public class MultiGameFrame extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				MusicBackGround buttonSound = new MusicBackGround("../Resource/Sound/ButtonSound.mp3", false);
 				buttonSound.start();
+				try {
+					Thread.sleep(100);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+				if (PlayWav.clip != null) {
+					PlayWav.clip.stop();
+				}
+				dispose();
+				if (MainFrame.MainBackMusic.getState() == Thread.State.TERMINATED) {
+					MainFrame.MainBackMusic = new MusicBackGround("../Resource/Sound/introMusic.mp3", true);
+				}
+				R.MAIN.setState(JFrame.NORMAL);
+				MainFrame.MainBackMusic.start();
 			}
 
 			@Override

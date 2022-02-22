@@ -1,10 +1,10 @@
-package view.buttonsGUI;
+package Info;
 
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
-import clientChat.gameUserList;
+import client.gameUserList;
 
 public class userNames extends Thread {
 	public static ArrayList<String> gameUserName;

@@ -1,4 +1,4 @@
-package serverChat;
+package main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,6 +9,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import server.broadcast;
+import server.gameUser;
+import server.inputMsg;
 
 public class gameServer extends Thread {
 	// 유저 정보를 담을 해쉬맵

@@ -1,10 +1,10 @@
-package jframe;
+package multiFinalFrame;
 
-import clientChat.gameClientReadMsg;
-import clientChat.gameUserList;
-import clientChat.scoreAll;
+import Info.userNames;
+import client.gameClientReadMsg;
+import client.gameUserList;
+import client.scoreAll;
 import view.MainFrame;
-import view.buttonsGUI.userNames;
 
 public class ThreadExit {
 

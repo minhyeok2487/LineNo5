@@ -1,30 +1,26 @@
 package music;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import clientChat.gameClient;
-import clientChat.gameClientReadMsg;
+import Info.MusicInfo;
+import client.gameClientReadMsg;
 import view.VolumnButtons;
-import view.buttonsGUI.MultiGameButtons;
 
 public class MusicPlayer extends Thread {
 	public static Clip ParentSong = null;
 	public static long clipTime;
 	public static FloatControl volume = null;
 	public static int init = 0;
-	public static String musicjsonpath = "src\\music\\song_json_data.json";
+	public static String musicjsonpath = "../Info/song_json_data.json";
 	MusicInfo musicPath;
 	ArrayList<MusicInfo> listInfo = new ArrayList<>();
 	ArrayList<Integer> songRandomIntList = gameClientReadMsg.serverSongRandom;
@@ -130,7 +126,7 @@ public class MusicPlayer extends Thread {
 //	}
 	
 	public Clip musicStart(MusicInfo musicPath) {
-		File musicFile = new File(musicPath.path);
+		File musicFile = new File(musicPath.getPath());
 		Clip c = null;
 		try {
 			AudioInputStream b = AudioSystem.getAudioInputStream(musicFile);

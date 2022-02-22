@@ -22,7 +22,6 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
-import Info.UserName;
 import main.R;
 import model.CountDown;
 import model.PlayWav;
@@ -35,7 +34,7 @@ public class SingleFinalFrame extends JFrame {
 	
 	private JLabel ScoreBackGround = new JLabel(R.jumReal);
 	private JLabel ScoreLabel = new JLabel(R.ok2);
-	private JLabel PlayerName = new JLabel(UserName.user);
+	private JLabel PlayerName = new JLabel(R.user);
 	public static JLabel FinalCountDown = new JLabel("카운트 다운 시작 준비...");
 	
 	int index;

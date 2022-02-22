@@ -1,8 +1,10 @@
-package serverChat;
+package server;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.HashMap;
+
+import main.gameServer;
 
 public class sendmsg {
 	

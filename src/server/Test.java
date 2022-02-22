@@ -1,4 +1,4 @@
-package serverChat;
+package server;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import Info.MusicInfo;
-import clientChat.gameClient;
+import client.gameClient;
 
 public class Test {
 	static String bufferMusic="bufferMusic"+" ";

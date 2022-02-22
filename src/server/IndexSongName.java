@@ -1,4 +1,4 @@
-package serverChat;
+package server;
 
 public class IndexSongName {
 

@@ -1,4 +1,4 @@
-package clientChat;
+package client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import music.MusicPlayer;
-import serverChat.songRandom;
+import server.songRandom;
 import view.buttonsGUI.MultiGameButtons;
 
 public class gameClientReadMsg extends Thread {

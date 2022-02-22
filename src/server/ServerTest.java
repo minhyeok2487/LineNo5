@@ -1,4 +1,4 @@
-package serverChat;
+package server;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

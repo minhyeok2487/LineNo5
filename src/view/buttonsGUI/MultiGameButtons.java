@@ -18,7 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import clientChat.gameClient;
+import Info.userNames;
+import client.gameClient;
 import main.Main;
 import main.R;
 import view.sounds.MusicBackGround;
@@ -44,16 +45,9 @@ public class MultiGameButtons extends JFrame {
 	public static JLabel Ch3Name = new JLabel();
 	public static JLabel Ch4Name = new JLabel();
 
-	public static ImageIcon PlayMusicBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayMusicBtn.png"));
-	public static ImageIcon PlayMusicBtnMouseOver = new ImageIcon(
-			Main.class.getResource("/view/buttonsGUI/PlayMusicBtnMouseOver.png"));
-	public static ImageIcon PlayMusicOff = new ImageIcon(Main.class.getResource("/view/buttonsGUI/PlayMusicOff.png"));
-	public static JButton PlayMusicButton = new JButton(PlayMusicBtn);
-	public static JLabel PlayMusicButtonOff = new JLabel(PlayMusicOff);
+	public static JButton PlayMusicButton = new JButton(R.PlayMusicBtn);
+	public static JLabel PlayMusicButtonOff = new JLabel(R.PlayMusicOff);
 	
-	public static ImageIcon ReadyBtn;
-	public static ImageIcon ReadyBtnMouseOver;
-	public static ImageIcon ReadyBtnOn;
 	public static JButton ReadyButton;
 	public static boolean flag;
 	public static JFrame a;
@@ -87,19 +81,19 @@ public class MultiGameButtons extends JFrame {
 		PlayMusicButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				MusicBackGround buttonSound = new MusicBackGround("../Resource/Sound/ButtonSound.mp3", false);
 				buttonSound.start();
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				PlayMusicButton.setIcon(PlayMusicBtnMouseOver);
+				PlayMusicButton.setIcon(R.PlayMusicBtnMouseOver);
 				PlayMusicButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				PlayMusicButton.setIcon(PlayMusicBtn);
+				PlayMusicButton.setIcon(R.PlayMusicBtn);
 				PlayMusicButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -181,10 +175,8 @@ public class MultiGameButtons extends JFrame {
 	}
 
 	public static void readyButton() {
-		ReadyBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/Readybutton.png"));
-		ReadyBtnMouseOver = new ImageIcon(Main.class.getResource("/view/buttonsGUI/ReadybuttonMouseOver.png"));
-		ReadyBtnOn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/ReadybuttonOn.png"));
-		ReadyButton = new JButton(ReadyBtn);
+		
+		ReadyButton = new JButton(R.ReadyBtn);
 
 		ReadyButton.setBounds(210, 50, 300, 153);
 		ReadyButton.setBorderPainted(false);
@@ -193,10 +185,10 @@ public class MultiGameButtons extends JFrame {
 		ReadyButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				MusicBackGround buttonSound = new MusicBackGround("../Resource/Sound/ButtonSound.mp3", false);
 				buttonSound.start();
-				if (ReadyButton.getIcon() != ReadyBtnOn) {
-					ReadyButton.setIcon(ReadyBtnOn);
+				if (ReadyButton.getIcon() != R.ReadyBtnOn) {
+					ReadyButton.setIcon(R.ReadyBtnOn);
 					try {
 						bw.write("ready+1" + "\n"); // 레디 누를시 +1
 						bw.flush();
@@ -209,8 +201,8 @@ public class MultiGameButtons extends JFrame {
 						}
 						e1.printStackTrace();
 					}
-				} else if (ReadyButton.getIcon() == ReadyBtnOn) {
-					ReadyButton.setIcon(ReadyBtn);
+				} else if (ReadyButton.getIcon() == R.ReadyBtnOn) {
+					ReadyButton.setIcon(R.ReadyBtn);
 					try {
 						bw.write("ready-1" + "\n"); // 레디 취소할 시 -1
 						bw.flush();
@@ -229,16 +221,16 @@ public class MultiGameButtons extends JFrame {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				if (ReadyButton.getIcon() != ReadyBtnOn) {
-					ReadyButton.setIcon(ReadyBtn);
+				if (ReadyButton.getIcon() != R.ReadyBtnOn) {
+					ReadyButton.setIcon(R.ReadyBtnMouseOver);
 					ReadyButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-				}
+				} 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (ReadyButton.getIcon() != ReadyBtnOn) {
-					ReadyButton.setIcon(ReadyBtnMouseOver);
+				if (ReadyButton.getIcon() != R.ReadyBtnOn) {
+					ReadyButton.setIcon(R.ReadyBtn);
 					ReadyButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 				}
 			}

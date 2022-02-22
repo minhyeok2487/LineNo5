@@ -2,9 +2,9 @@ package music;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
-import clientChat.gameClient;
+import Info.MusicInfo;
+import client.gameClient;
 import view.buttonsGUI.MultiGameButtons;
 
 public class Game extends Thread {
@@ -16,7 +16,7 @@ public class Game extends Thread {
 
 	public Game(MusicInfo musicInfo) {
 		this.musicInfo = musicInfo;
-		System.out.println(musicInfo.song);
+		System.out.println(musicInfo.getSong());
 //		musicPlayer.musicStart(musicInfo);
 //		gameStart();
 		start();
@@ -29,7 +29,7 @@ public class Game extends Thread {
 //		flag = true;
 		while (flag) {
 			answer = MultiGameButtons.getAnswer();
-			songInfo = musicInfo.song.trim();
+			songInfo = musicInfo.getSong().trim();
 
 			try {
 				Thread.sleep(1000);

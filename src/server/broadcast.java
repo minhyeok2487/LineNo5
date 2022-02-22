@@ -1,4 +1,4 @@
-package serverChat;
+package server;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import main.gameServer;
 
 public class broadcast {
 	HashMap<String, gameUser> user = gameServer.getUser();

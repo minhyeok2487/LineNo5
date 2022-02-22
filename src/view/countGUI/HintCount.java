@@ -1,29 +1,16 @@
 package view.countGUI;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import main.Main;
+import main.R;
 
 public class HintCount {
-	public static ImageIcon RemainHint5 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainHint5.png"));
-	public static JLabel RemainHint5Label = new JLabel(RemainHint5);
-	public static ImageIcon RemainHint4 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainHint4.png"));
-	public static JLabel RemainHint4Label = new JLabel(RemainHint4);
-	public static ImageIcon RemainHint3 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainHint3.png"));
-	public static JLabel RemainHint3Label = new JLabel(RemainHint3);
-	public static ImageIcon RemainHint2 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainHint2.png"));
-	public static JLabel RemainHint2Label = new JLabel(RemainHint2);
-	public static ImageIcon RemainHint1 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainHint1.png"));
-	public static JLabel RemainHint1Label = new JLabel(RemainHint1);
-	public static ImageIcon RemainHint0 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainHint0.png"));
-	public static JLabel RemainHint0Label = new JLabel(RemainHint0);
+	public static JLabel RemainHint5Label = new JLabel(R.RemainHint5);
+	public static JLabel RemainHint4Label = new JLabel(R.RemainHint4);
+	public static JLabel RemainHint3Label = new JLabel(R.RemainHint3);
+	public static JLabel RemainHint2Label = new JLabel(R.RemainHint2);
+	public static JLabel RemainHint1Label = new JLabel(R.RemainHint1);
+	public static JLabel RemainHint0Label = new JLabel(R.RemainHint0);
 	int count;
 	
 	public HintCount() {

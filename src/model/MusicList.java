@@ -18,7 +18,7 @@ public class MusicList {
 		ArrayList<MusicInfo> musicInfo = null;
 		try {
 			JSONParser jsonParser = new JSONParser();
-			FileReader reader = new FileReader("../LineNo5/src/model/song_json_data.json");
+			FileReader reader = new FileReader("../LineNo5/src/Info/song_json_data.json");
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
 			musicInfoArray = (JSONArray) jsonObject.get("songs");
 			musicInfo = new ArrayList<>();

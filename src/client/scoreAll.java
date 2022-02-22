@@ -1,4 +1,4 @@
-package clientChat;
+package client;
 
 import java.util.HashMap;
 import java.util.StringTokenizer;

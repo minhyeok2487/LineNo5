@@ -1,4 +1,4 @@
-package jframe;
+package multiFinalFrame;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

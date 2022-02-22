@@ -4,26 +4,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import main.Main;
+import main.R;
 
 public class NextCount {
-	public static ImageIcon RemainNext5 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainNext5.png"));
-	public static JLabel RemainNext5Label = new JLabel(RemainNext5);
-	public static ImageIcon RemainNext4 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainNext4.png"));
-	public static JLabel RemainNext4Label = new JLabel(RemainNext4);
-	public static ImageIcon RemainNext3 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainNext3.png"));
-	public static JLabel RemainNext3Label = new JLabel(RemainNext3);
-	public static ImageIcon RemainNext2 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainNext2.png"));
-	public static JLabel RemainNext2Label = new JLabel(RemainNext2);
-	public static ImageIcon RemainNext1 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainNext1.png"));
-	public static JLabel RemainNext1Label = new JLabel(RemainNext1);
-	public static ImageIcon RemainNext0 = new ImageIcon(
-			Main.class.getResource("/view/countGUI/RemainNext0.png"));
-	public static JLabel RemainNext0Label = new JLabel(RemainNext0);
+
+	public static JLabel RemainNext5Label = new JLabel(R.RemainNext5);
+	public static JLabel RemainNext4Label = new JLabel(R.RemainNext4);
+	public static JLabel RemainNext3Label = new JLabel(R.RemainNext3);
+	public static JLabel RemainNext2Label = new JLabel(R.RemainNext2);
+	public static JLabel RemainNext1Label = new JLabel(R.RemainNext1);
+	public static JLabel RemainNext0Label = new JLabel(R.RemainNext0);
 	int count;
 	
 	public NextCount() {

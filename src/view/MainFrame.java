@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import clientChat.gameClient;
+import client.gameClient;
 import main.R;
 import model.CountDown;
 import view.MenuBar.MainMenuBar;
@@ -21,11 +21,11 @@ import view.sounds.MusicBackGround;
 public class MainFrame extends JFrame {
 	private Image screenImage;
 	private Graphics screenGraphic;
-	private static final String HOST = "127.0.0.1";
+	
 	public static MusicBackGround MainBackMusic = new MusicBackGround("../Resource/Sound/introMusic.mp3", true);
 
 	public MainFrame() throws UnknownHostException {
-		// new gameClient(); // 클라이언트 접속
+		new gameClient(); // 클라이언트 접속
 		new Default(this, R.ClientWidth, R.ClientHeight); // 클라이언트 프레임 디폴트 설정
 		new MainMenuBar(this); // 클라이언트 상단 메뉴바 추가 메소드
 		// 클라이언트 배경음악 재생
@@ -73,7 +73,7 @@ public class MainFrame extends JFrame {
 		add(UpdateButton);
 
 		// 인터넷 연결 상태 체크
-		boolean isConnected = !HOST.equals(InetAddress.getLocalHost().getHostAddress().toString());
+		boolean isConnected = !R.HOST.equals(InetAddress.getLocalHost().getHostAddress().toString());
 		if (isConnected) { // 연결이 되있으면
 			UpdateButtonOff.setVisible(false);
 			UpdateButton.setVisible(true);

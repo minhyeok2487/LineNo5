@@ -19,7 +19,7 @@ public class NumberGUI {
 		} else {
 			number = Integer.toString(n);
 		}
-		String dir = "/view/numberGUI/"+number+".png";
+		String dir = "/Resource/Images/NumberGUI/"+number+".png";
 		ImageIcon CheckNumber = new ImageIcon(Main.class.getResource(dir));
 		return CheckNumber;
 	}

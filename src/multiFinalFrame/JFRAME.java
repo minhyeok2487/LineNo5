@@ -1,4 +1,4 @@
-package jframe;
+package multiFinalFrame;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -22,9 +22,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextArea;
 
-import clientChat.gameClient;
-import clientChat.gameClientReadMsg;
-import music.MusicInfo;
+import Info.MusicInfo;
+import client.gameClient;
 import view.MainFrame;
 import view.buttonsGUI.MultiGameButtons;
 import view.sounds.MusicBackGround;
@@ -69,7 +68,7 @@ public class JFRAME extends JFrame {
 	public void getList() {
 		for (int i = 0; i < list.size(); i++) {
 			SongSinger.add(list.get(i).getSong() + " - " + list.get(i).getSinger());
-			uri[i] = list.get(i).getUrl();
+			uri[i] = list.get(i).getPath();
 		}
 	}
 

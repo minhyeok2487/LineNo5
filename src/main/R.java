@@ -11,6 +11,8 @@ import view.sounds.MusicBackGround;
 public class R {
 	public static int SongLength = 30; // 노래 갯수
 	public static int SingleGameLength = 10; // 싱글 플레이 시간
+	public static String HOST = "127.0.0.1"; // 임시 서버
+	public static String user; // 임시 플레이어
 	
 	public static JFrame MAIN; // 클라이언트 메인 프레임
 	public static JFrame GameMAIN; // 클라이언트 게임 프레임
@@ -60,6 +62,7 @@ public class R {
 	public static ImageIcon PlayMusicBtn = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/PlayMusicBtn.png"));
 	public static ImageIcon PlayMusicBtnMouseOver = new ImageIcon(
 			Main.class.getResource("../Resource/Images/ButtonGUI/PlayMusicBtnMouseOver.png"));
+	public static ImageIcon PlayMusicOff = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/PlayMusicOff.png"));
 	public static ImageIcon SingerHintBtn = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/SingerHintBtn.png"));
 	public static ImageIcon SingerHintBtnMouseOver = new ImageIcon(
 			Main.class.getResource("../Resource/Images/ButtonGUI/SingerHintBtnMouseOver.png"));
@@ -68,6 +71,24 @@ public class R {
 			Main.class.getResource("../Resource/Images/ButtonGUI/SongHintBtnMouseOver.png"));
 	public static ImageIcon SubmitBtn = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/SubmitBtn.png"));
 	public static ImageIcon SubmitBtnMouseOver = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/SubmitBtnMouseOver.png"));
+	public static ImageIcon ReadyBtn = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/Readybutton.png"));
+	public static ImageIcon ReadyBtnMouseOver = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/ReadybuttonMouseOver.png"));
+	public static ImageIcon ReadyBtnOn = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/ReadybuttonOn.png"));
+	
+	// 클라이언트 힌트, 넥스트 카운트 GUI
+	public static ImageIcon RemainHint5 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainHint5.png"));
+	public static ImageIcon RemainHint4 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainHint4.png"));
+	public static ImageIcon RemainHint3 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainHint3.png"));
+	public static ImageIcon RemainHint2 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainHint2.png"));
+	public static ImageIcon RemainHint1 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainHint1.png"));
+	public static ImageIcon RemainHint0 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainHint0.png"));
+	
+	public static ImageIcon RemainNext5 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainNext5.png"));
+	public static ImageIcon RemainNext4 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainNext4.png"));
+	public static ImageIcon RemainNext3 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainNext3.png"));
+	public static ImageIcon RemainNext2 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainNext2.png"));
+	public static ImageIcon RemainNext1 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainNext1.png"));
+	public static ImageIcon RemainNext0 = new ImageIcon(Main.class.getResource("../Resource/Images/CountGUI/RemainNext0.png"));
 	
 	// 클라이언트 설정 버튼 GUI
 	public static ImageIcon SettingBtn = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/SettingBtn.png"));

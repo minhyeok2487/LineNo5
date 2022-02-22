@@ -1,4 +1,4 @@
-package clientChat;
+package client;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import model.MusicList;
-import serverChat.Test;
+import server.Test;
 
 public class gameClient {
 	private static Socket socket;

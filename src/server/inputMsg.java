@@ -1,4 +1,4 @@
-package serverChat;
+package server;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,6 +10,8 @@ import java.util.StringTokenizer;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+
+import main.gameServer;
 
 public class inputMsg extends Thread {
 	private final String next = "next"; // 정답을 맞췄을 시 발송해주는 암호

@@ -1,4 +1,4 @@
-package jframe;
+package multiFinalFrame;
 
 import java.awt.Cursor;
 import java.awt.EventQueue;
@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextArea;
 
-import music.MusicInfo;
+import Info.MusicInfo;
 import view.sounds.MusicBackGround;
 
 public class reaultFrame {
