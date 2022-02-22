@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import main.R;
 import model.MusicList;
 import server.Test;
 
@@ -28,15 +29,15 @@ public class gameClient {
 	public static Socket getSocket() {
 		return socket;
 	}
-
+ 
 	//private String serverIp = "192.168.100.115";
-	private String serverIp = "172.30.1.17";
+	private String serverIp = R.HOST;
 	Scanner scan = new Scanner(System.in);
 	
 	public gameClient() { 
 		try { 
 			// 클라이언트 실행시 서버와 접속.			
-			socket = new Socket(InetAddress.getLocalHost(), 8888);
+			socket = new Socket(serverIp, 8888);
 			System.out.println("접속 되었습니다");
 			
 			//서버와 통신할 br bw 설정

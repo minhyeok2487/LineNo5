@@ -33,7 +33,7 @@ public class gameClientReadMsg extends Thread {
 				String subStr = serverMsg.substring(serverMsg.length()-1);
 				if(serverMsg.equals("start"))
 				{
-					musicPlayer = new MusicPlayer();
+					musicPlayer = new MusicPlayer(); 
 //					musicPlayer.musicStart();
 					// 재생버튼 활성화 할지 안할지
 					MultiGameButtons.PlayMusicButtonOff.setVisible(false);

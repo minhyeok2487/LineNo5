@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
 	public static MusicBackGround MainBackMusic = new MusicBackGround("../Resource/Sound/introMusic.mp3", true);
 
 	public MainFrame() throws UnknownHostException {
-		new gameClient(); // 클라이언트 접속
+		//new gameClient(); // 클라이언트 접속 
 		new Default(this, R.ClientWidth, R.ClientHeight); // 클라이언트 프레임 디폴트 설정
 		new MainMenuBar(this); // 클라이언트 상단 메뉴바 추가 메소드
 		// 클라이언트 배경음악 재생

@@ -27,7 +27,7 @@ public class gameServer extends Thread {
 	public gameServer() {
 		// 포트 준비하고 대기
 		try {
-			listener = new ServerSocket(8888); // 포트 8500
+			listener = new ServerSocket(8888);
 			System.out.println("서버 접속 대기중!");
 			// 접속자 승인 및 유저 등록
 			this.start();
