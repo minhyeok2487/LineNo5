@@ -16,7 +16,7 @@ public class ThreadExit {
 		// MusicPlayer.interrupted(); 혹시 몰라
 		// 메인버튼 클라스 쓰레드 임시 보류
 		userNames.flag = false;
-		MainFrame.introMusic.close();
+		MainFrame.MainBackMusic.close();
 		gameUserList.gameUserName.clear();
 		scoreAll.userScore.clear();
 

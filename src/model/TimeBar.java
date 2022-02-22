@@ -5,27 +5,25 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import view.FinalFrame;
-import view.buttonsGUI.SingleGameButtons;
+import main.R;
+import view.SingleFinalFrame;
 
 public class TimeBar extends JLabel implements Runnable {
 	int width = 450, height = 50, gow = 450;
 	int x = 400, y = 40;
 	Color color = new Color(255, 0, 0);
 	int second;
-	JFrame getFrame;
 
 	public int getGow() {
 		return gow;
 	}
 
-	public TimeBar(int second, JFrame jFrame) {
+	public TimeBar(int second) {
 		setBackground(color);
 		setOpaque(true);
 		setBounds(x, y, width, height);
 
 		this.second = second;
-		this.getFrame = jFrame;
 	}
 
 	@Override
@@ -46,8 +44,8 @@ public class TimeBar extends JLabel implements Runnable {
         } finally {
         	if (gow == 0 && !Thread.currentThread().isInterrupted()) {
     			PlayWav.clip.stop();
-    			getFrame.dispose();
-    			new FinalFrame(); 
+    			R.GameMAIN.dispose();
+    			new SingleFinalFrame(); 
     		}
         }
 	}	

@@ -10,7 +10,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import User.MusicInfo;
+import Info.MusicInfo;
 
 public class MusicList {
 	public static ArrayList musiclist() throws IOException {

@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 // 전체적인 프레임 구조 저장
 public class Default extends JFrame{
-	public static void DefaultFrame(JFrame jframe, int Width, int Height) {
+	public Default(JFrame jframe, int Width, int Height) {
 		jframe.setUndecorated(true); // 기존 상단바 삭제
 		jframe.setSize(Width, Height); // 프레임 크기조절
 		jframe.setResizable(false); // 프레임 크기 고정

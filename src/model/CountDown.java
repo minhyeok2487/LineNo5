@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import main.Main;
+import main.R;
 import view.MultiGameFrame;
 import view.SingleGameFrame;
 
@@ -29,9 +30,8 @@ public class CountDown extends JLabel implements Runnable {
 		this.sc = sc;
 		this.n = n;
 		
-		// gif 아이콘
-		ImageIcon icon = new ImageIcon(Main.class.getResource("/view/point2.gif"));
-		label = new JLabel(icon);
+		// GIF 추가
+		label = new JLabel(R.PointIcon);
 		label.setBounds(310-160, 100, 160, 160);
 		jFrame.add(label);
 	}
@@ -53,15 +53,15 @@ public class CountDown extends JLabel implements Runnable {
 			} else {
 				try {
 					if(n==1) {
-						new SingleGameFrame(1);
+						R.GameMAIN = new SingleGameFrame(1);
 					} else if(n==5) {
-						new SingleGameFrame(5);
+						R.GameMAIN = new SingleGameFrame(5);
 					} else if(n==10) {
-						new SingleGameFrame(10);
+						R.GameMAIN = new SingleGameFrame(10);
 					} else {
-						new MultiGameFrame();
+						R.GameMAIN = new MultiGameFrame();
 					}
-					Main.MA.setState(JFrame.ICONIFIED);
+					R.MAIN.setState(JFrame.ICONIFIED);
 					
 				} catch (IOException e1) {
 					e1.printStackTrace();

@@ -16,8 +16,8 @@ import org.json.simple.JSONObject;
 
 import clientChat.gameClient;
 import clientChat.gameClientReadMsg;
+import view.VolumnButtons;
 import view.buttonsGUI.MultiGameButtons;
-import view.buttonsGUI.VolumnButtons;
 
 public class MusicPlayer extends Thread {
 	public static Clip ParentSong = null;

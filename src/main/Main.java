@@ -1,15 +1,12 @@
 package main;
 
 import java.net.UnknownHostException;
-
-import javax.swing.JFrame;
-
 import view.MainFrame;
 
 public class Main {
-	public static JFrame MA;
 	public static void main(String[] args) throws UnknownHostException {
-		MA = new MainFrame(); // 클라이언트 게임 실행
+		// 추후 메인 화면을 컨트롤하기 위해 클라이언트를 변수로 받아 실행
+		R.MAIN = new MainFrame(); 
 	}
 
 }

@@ -6,7 +6,7 @@ import java.util.Random;
 
 import javax.sound.sampled.*;
 
-import view.buttonsGUI.VolumnButtons;
+import view.VolumnButtons;
 
 // 랜덤으로 wav 파일 한곡 재생 클래스
 public class PlayWav {
