@@ -29,7 +29,7 @@ public class gameServer extends Thread {
 		try {
 			listener = new ServerSocket(8888);
 			System.out.println("서버 접속 대기중!");
-			// 접속자 승인 및 유저 등록
+			// 접속자 승인 및 유저 등록 
 			this.start();
 
 		} catch (IOException e) {
