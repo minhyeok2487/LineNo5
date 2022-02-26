@@ -1,4 +1,4 @@
-package view.buttonsGUI;
+package view;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -22,6 +22,7 @@ import Info.userNames;
 import client.gameClient;
 import main.Main;
 import main.R;
+import view.MultiGameFrame;
 import view.sounds.MusicBackGround;
 
 public class MultiGameButtons extends JFrame {
@@ -34,7 +35,6 @@ public class MultiGameButtons extends JFrame {
 	public static JScrollPane scroll;
 	public static JTextField Enter;
 
-	
 	public static JLabel Ch1 = new JLabel(R.character1);
 	public static JLabel Ch2 = new JLabel(R.character2);
 	public static JLabel Ch3 = new JLabel(R.character3);
@@ -45,9 +45,9 @@ public class MultiGameButtons extends JFrame {
 	public static JLabel Ch3Name = new JLabel();
 	public static JLabel Ch4Name = new JLabel();
 
-	public static JButton PlayMusicButton = new JButton(R.PlayMusicBtn);
-	public static JLabel PlayMusicButtonOff = new JLabel(R.PlayMusicOff);
-	
+	public static ImageIcon ReadyBtn;
+	public static ImageIcon ReadyBtnMouseOver;
+	public static ImageIcon ReadyBtnOn;
 	public static JButton ReadyButton;
 	public static boolean flag;
 	public static JFrame a;
@@ -66,12 +66,9 @@ public class MultiGameButtons extends JFrame {
 
 	public static void AddMultiGameButtons(JFrame jFrame) {
 		a = jFrame;
+	
+		JButton PlayMusicButton = new JButton(R.PlayMusicBtn);
 
-		PlayMusicButton.setVisible(false);
-		PlayMusicButtonOff.setBounds(80, 60, 120, 120);
-		PlayMusicButtonOff.setVisible(true);
-		
-		
 		useField();
 
 		PlayMusicButton.setBounds(80, 60, 120, 120);
@@ -83,6 +80,7 @@ public class MultiGameButtons extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				MusicBackGround buttonSound = new MusicBackGround("../Resource/Sound/ButtonSound.mp3", false);
 				buttonSound.start();
+				MultiGameFrame.playMusic();
 			}
 
 			@Override
@@ -100,12 +98,12 @@ public class MultiGameButtons extends JFrame {
 
 		readyButton();
 
+
 		playerName();
 
 		chatArea();
 
 		jFrame.add(PlayMusicButton);
-		jFrame.add(PlayMusicButtonOff);
 		jFrame.add(Ch1Name);
 		jFrame.add(Ch1);
 		jFrame.add(Ch2Name);
@@ -175,7 +173,6 @@ public class MultiGameButtons extends JFrame {
 	}
 
 	public static void readyButton() {
-		
 		ReadyButton = new JButton(R.ReadyBtn);
 
 		ReadyButton.setBounds(210, 50, 300, 153);
@@ -222,15 +219,15 @@ public class MultiGameButtons extends JFrame {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				if (ReadyButton.getIcon() != R.ReadyBtnOn) {
-					ReadyButton.setIcon(R.ReadyBtnMouseOver);
+					ReadyButton.setIcon(R.ReadyBtn);
 					ReadyButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-				} 
+				}
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				if (ReadyButton.getIcon() != R.ReadyBtnOn) {
-					ReadyButton.setIcon(R.ReadyBtn);
+					ReadyButton.setIcon(R.ReadyBtnMouseOver);
 					ReadyButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 				}
 			}

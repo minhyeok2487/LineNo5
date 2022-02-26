@@ -1,18 +1,19 @@
 package main;
 
 import java.awt.Image;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
-import view.sounds.MusicBackGround;
+import client.GameInterface;
 
 public class R {
 	public static int SongLength = 30; // 노래 갯수
 	public static int SingleGameLength = 10; // 싱글 플레이 시간
-	public static String HOST = "127.0.0.1"; // 임시 서버
+	public static String HOST = "127.30.1.17"; // 임시 서버
 	public static String user; // 임시 플레이어
+	public static ArrayList<GameInterface> threadList = new ArrayList<GameInterface>();
 	
 	public static JFrame MAIN; // 클라이언트 메인 프레임
 	public static JFrame GameMAIN; // 클라이언트 게임 프레임
@@ -115,4 +116,10 @@ public class R {
 	public static ImageIcon character2 = new ImageIcon(Main.class.getResource("../Resource/Images/charactersGUI/character2.png"));
 	public static ImageIcon character3 = new ImageIcon(Main.class.getResource("../Resource/Images/charactersGUI/character3.png"));
 	public static ImageIcon character4 = new ImageIcon(Main.class.getResource("../Resource/Images/charactersGUI/character4.png"));
+	
+	// 클라이언트 멀티 결과 프레임 GUI
+	public static ImageIcon QuitBtn = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/QuitBtn1.png"));
+	public static ImageIcon QuitBtnMouseOver = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/QuitBtnMouseOver1.png"));
+	public static ImageIcon waitingRoomBtn = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/waitingBtn1.png"));
+	public static ImageIcon waitingRoomBtnMouserOver = new ImageIcon(Main.class.getResource("../Resource/Images/ButtonGUI/waintRoomMouse11.png"));
 }

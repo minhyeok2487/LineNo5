@@ -1,10 +1,7 @@
 package client;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.util.Scanner;
-
-import view.buttonsGUI.MultiGameButtons;
 
 public class gameClientWriteMsg extends Thread {
 	BufferedWriter bw;

@@ -6,48 +6,53 @@ import java.util.ArrayList;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Info.MusicInfo;
+import client.GameInterface;
 import client.gameClientReadMsg;
-import view.VolumnButtons;
+import multiFinalFrame.JFRAME;
+import view.MultiGameButtons;
 
-public class MusicPlayer extends Thread {
-	public static Clip ParentSong = null;
-	public static long clipTime;
-	public static FloatControl volume = null;
-	public static int init = 0;
-	public static String musicjsonpath = "../Info/song_json_data.json";
+
+public class MusicPlayer extends Thread implements GameInterface{
+	public void kill_self(){
+		synchronized (this) {
+			this.stop();
+		}
+	}
+	public static String musicjsonpath = "src/music/song_json_data.json";
 	MusicInfo musicPath;
 	ArrayList<MusicInfo> listInfo = new ArrayList<>();
 	ArrayList<Integer> songRandomIntList = gameClientReadMsg.serverSongRandom;
+	ArrayList<JFRAME> frame = new ArrayList<>();
+	ArrayList<MusicInfo> playList = new ArrayList<>();
 	public int num = 0;
-	public boolean flagIf;
-	public boolean flag;
-
+	private boolean flagIf;
+	private boolean flagClear = false;
+	public static boolean runflag = true;
 	public MusicPlayer() {
 		listInfo = initializeMusic();
 		start();
 	}
-	
-	public boolean getFlag() {
-		return flagIf;
-	}
-	
+
 	public void setFlagIf(boolean flagIf) {
 		this.flagIf = flagIf;
 	}
-	
+
+	public void setFlagClear(boolean flagClear) {
+		this.flagClear = flagClear;
+	}
+
 	@Override
 	public void run() {
+		runflag = true;
 		flagIf = true;
-		
+
 		int index = 0;
-		while(index < 10) {
-			flag = getFlag();
+		while (index < 10) {
 
 			try {
 				Thread.sleep(100);
@@ -55,45 +60,40 @@ public class MusicPlayer extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			if(flagIf) {
-				if(ParentSong != null) {
-					ParentSong.stop();
-				}
+
+			if (flagIf) {
 				musicPath = null;
+
 				musicPath = getMusicListInfo().get(songRandomIntList.get(index));
-				ParentSong = musicStart(musicPath);
-				ParentSong.start();
-				clipTime = ParentSong.getMicrosecondPosition();
-				volume = (FloatControl) ParentSong.getControl(FloatControl.Type.MASTER_GAIN);
-				if(init == 0) { //처음 소리 크기 지정
-					volume.setValue(-10.0f);
-				}
-				switch (VolumnButtons.N) {
-				case 0: {volume.setValue(-20.0f); break;}
-				case 1: {volume.setValue(-18.0f); break;}
-				case 2: {volume.setValue(-16.0f); break;}
-				case 3: {volume.setValue(-14.0f); break;}
-				case 4: {volume.setValue(-12.0f); break;}
-				case 5: {volume.setValue(-10.0f); break;}
-				case 6: {volume.setValue(-8.0f); break;}
-				case 7: {volume.setValue(-6.0f); break;}
-				case 8: {volume.setValue(-4.0f); break;}
-				case 9: {volume.setValue(-2.0f); break;}
-				case 10: {volume.setValue(0.0f); break;}
-				}
+
+				musicStart(musicPath);
 				new Game(musicPath);
 				flagIf = false;
 				index++;
+				System.out.println("index" + index);
+				playList.add(musicPath);
 			}
-			
+
 		}
-		
-		if(index == 10) {
-			// 점수 결과 창으로
+		index = 0;
+		while (runflag) {
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if (flagClear) {
+				// 점수 결과 창으로
+				// gameClientReadMsg에서 clear 호출시 실행되도록 변경
+
+				// 숫자 10개 돌면 게임 끝
+				
+				MultiGameButtons.a.dispose();
+				new JFRAME(playList);
+				System.out.println("게임 끝");
+				break;
+			}
 		}
-		// 숫자 10개 돌면 게임 끝
-		System.out.println("게임 끝");
 
 	}
 
@@ -124,18 +124,18 @@ public class MusicPlayer extends Thread {
 //	public void restartMusic() {
 //		songRandomIntList.clear();
 //	}
-	
-	public Clip musicStart(MusicInfo musicPath) {
-		File musicFile = new File(musicPath.getPath());
-		Clip c = null;
+
+	public void musicStart(MusicInfo musicPath) {
+		File musicFile = new File(musicPath.path);
 		try {
 			AudioInputStream b = AudioSystem.getAudioInputStream(musicFile);
-			c = AudioSystem.getClip();
+			Clip c = AudioSystem.getClip();
 			c.open(b);
+			c.start();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return c;
 	}
 
 }

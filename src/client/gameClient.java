@@ -11,20 +11,21 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import main.R;
-import model.MusicList;
 import server.Test;
 
 public class gameClient {
 	private static Socket socket;
 	private static BufferedWriter bw;
 	private static BufferedReader br;
-	Test bufferMusic;
 	
 	public static BufferedWriter getBw() {
 		return bw;
 	}
 	public static BufferedReader getBr() {
 		return br;
+	}
+	public static void setBr(BufferedReader br) {
+		gameClient.br = br;
 	}
 	public static Socket getSocket() {
 		return socket;
@@ -50,9 +51,9 @@ public class gameClient {
 			bw.flush();
 			
 			//메세지를 받는다
-			new gameClientReadMsg(br);
+			R.threadList.add(new gameClientReadMsg(br));
+			//new gameClientReadMsg(br);
 			
-			Test.sendMusicToServer();	
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

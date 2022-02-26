@@ -26,6 +26,9 @@ public class gameUser {
 		return score;
 	}
 	
+	public void resetScore() {
+		this.score = 0;
+	}
 	public void setScore(int score) {
 		this.score += score;
 		System.out.println(this.score); // 점수확인용

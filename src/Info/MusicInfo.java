@@ -7,7 +7,7 @@ public class MusicInfo {
 	private String ip;
 	private String song;
 	private String singer;
-	private String path;
+	public String path;
 	private String songHint;
 	private String singerHint;
 	

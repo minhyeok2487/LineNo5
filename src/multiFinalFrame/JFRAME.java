@@ -13,6 +13,7 @@ import java.io.BufferedWriter;
 import java.net.URI;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -24,8 +25,11 @@ import javax.swing.JTextArea;
 
 import Info.MusicInfo;
 import client.gameClient;
+import client.gameUserList;
+import client.scoreAll;
+import main.R;
 import view.MainFrame;
-import view.buttonsGUI.MultiGameButtons;
+import view.MultiGameButtons;
 import view.sounds.MusicBackGround;
 
 public class JFRAME extends JFrame {
@@ -35,24 +39,31 @@ public class JFRAME extends JFrame {
 	public static JTextArea chatChang;
 	private Image SCI;
 	private Graphics SCG; 
-	private Image FinalBackGround = new ImageIcon("../LineNo5_mh/src/view/playBackground.jpg").getImage();
-	private JLabel menuB = new JLabel(new ImageIcon("../LineNo5_mh/src/view/menuGUI/MenuBar.png"));
-	private ImageIcon exitover = new ImageIcon("../LineNo5_mh/src/view/menuGUI/ExitButtonMouseOver.png");
-	private ImageIcon exitBasic = new ImageIcon("../LineNo5_mh/src/view/menuGUI/ExitButton.png");
-	private JButton exit = new JButton(exitBasic);
+	private Image FinalBackGround = R.Gamebackground;
+	private JLabel menuB = new JLabel(R.menuBarLabel);
+	private JButton exit = new JButton(R.ExitBtn);
 	private int mouseX, mouseY;
 	// private JFrame fd = MultiGameButtons.useField();
-
-	public static MusicBackGround introMusic = new MusicBackGround("/view/sounds/introMusic.mp3", true);
+	public static MusicBackGround introMusic = new MusicBackGround("../Resource/Sound/introMusic.mp3", true);
 	public static List<String> SongSinger = new ArrayList<String>();
+	public static List<String> userlist = new ArrayList<String>();
 	public static String uri[] = new String[10];
-	// private JFrame frame;
+	public static HashMap<String, Integer> uScore;
+	public static List<String> set;
 	private ArrayList<MusicInfo> list;
-	ImageIcon QuitBtn = new ImageIcon("../LineNo5_mh/src/view/buttonsGUI/QuitBtn1.png");
-	ImageIcon QuitBtnMouseOver = new ImageIcon("../LineNo5_mh/src/view/buttonsGUI/QuitBtnMouseOver1.png");
-	ImageIcon waitingRoomBtn = new ImageIcon("../LineNo5_mh/src/view/buttonsGUI/waitingBtn1.png");
-	ImageIcon waitingRoomBtnMouserOver = new ImageIcon("../LineNo5_mh/src/view/buttonsGUI/waintRoomMouse11.png");
+	
+	// 유저 랭킹 4명 변수
+	public static String rank1 = "";
+	public static String rank2 = "";
+	public static String rank3 = "";
+	public static String rank4 = "";
 
+	// 유저 랭킹 4명 라벨
+	public static JLabel rankLabel1;
+	public static JLabel rankLabel2;
+	public static JLabel rankLabel3;
+	public static JLabel rankLabel4;
+	
 	public JFRAME() {
 
 	}
@@ -62,7 +73,36 @@ public class JFRAME extends JFrame {
 		MultiGameButtons.setReadChatting("");
 		introMusic.start();
 		getList();
+		getuserScore();
+		getuserlist();
 		initialize();
+	}
+	public void getuserScore() {
+		uScore = scoreAll.userScore;
+		set = new ArrayList<>(uScore.keySet());
+		String[] str = new String[set.size()];
+
+		set.sort((o1, o2) -> uScore.get(o2) - uScore.get(o1));
+
+		for (int i = 0; i < str.length; i++) {
+			str[i] = String.format("ID : %s - Score : %s", set.get(i), uScore.get(set.get(i)));
+			if (!rank1.contains(str[0])) {
+				rank1 = str[0];
+			} else if (!rank2.contains(str[1])) {
+				rank2 = str[1];
+			} else if (!rank3.contains(str[2])) {
+				rank3 = str[2];
+			} else if (!rank4.contains(str[3])) {
+				rank4 = str[3];
+			}
+
+		}
+	}
+
+	public void getuserlist() {
+		for (int i = 0; i < gameUserList.gameUserName.size(); i++) {
+			userlist.add(gameUserList.gameUserName.get(i));
+		}
 	}
 
 	public void getList() {
@@ -95,12 +135,12 @@ public class JFRAME extends JFrame {
 		setVisible(true);
 		setLayout(null);
 
-		JButton chartBtn = new JButton("차트");
-		chartBtn.setBounds(600, 70, 111, 82);
-		getContentPane().add(chartBtn);
+//		JButton chartBtn = new JButton("차트");
+//		chartBtn.setBounds(600, 70, 111, 82);
+//		getContentPane().add(chartBtn);
 
 		// ----------------대기 버튼
-		JButton roomBtn = new JButton(waitingRoomBtn);
+		JButton roomBtn = new JButton(R.waitingRoomBtn);
 		add(roomBtn);
 		roomBtn.setBounds(800, 620, 207, 65);
 		roomBtn.setBorderPainted(false);
@@ -111,7 +151,7 @@ public class JFRAME extends JFrame {
 		roomBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				MusicBackGround buttonSound = new MusicBackGround("../Resource/Sound/ButtonSound.mp3", false);
 				buttonSound.start();
 				try {
 					Thread.sleep(100);
@@ -122,19 +162,19 @@ public class JFRAME extends JFrame {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				roomBtn.setIcon(waitingRoomBtnMouserOver);
+				roomBtn.setIcon(R.waitingRoomBtnMouserOver);
 				roomBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				roomBtn.setIcon(waitingRoomBtn);
+				roomBtn.setIcon(R.waitingRoomBtn);
 				roomBtn.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 
 		// -------------- 종료 버튼
-		JButton endBtn = new JButton(QuitBtn);
+		JButton endBtn = new JButton(R.QuitBtn);
 		add(endBtn);
 		endBtn.setBounds(1050, 620, 215, 65);
 		endBtn.setBorderPainted(false);
@@ -145,7 +185,7 @@ public class JFRAME extends JFrame {
 		endBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				MusicBackGround buttonSound = new MusicBackGround("/view/sounds/ButtonSound.mp3", false);
+				MusicBackGround buttonSound = new MusicBackGround("../Resource/Sound/ButtonSound.mp3", false);
 				buttonSound.start();
 				try {
 					Thread.sleep(100);
@@ -180,54 +220,68 @@ public class JFRAME extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				endBtn.setIcon(QuitBtnMouseOver);
+				endBtn.setIcon(R.QuitBtnMouseOver);
 				endBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				endBtn.setIcon(QuitBtn);
+				endBtn.setIcon(R.QuitBtn);
 				endBtn.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-
+		
 		// ---------------- 1등
-		JLabel rank1 = new JLabel("1등");
-		rank1.setIcon(new ImageIcon("../LineNo5_mh/src/view/buttonsGUI/1remove.png"));
-		rank1.setBounds(50, 40, 50, 50);
-		add(rank1);
-
-		JLabel lblNewLabel = new JLabel("111111111111");
-		lblNewLabel.setBounds(130, 40, 266, 50);
-		getContentPane().add(lblNewLabel);
+		JLabel iconRank1 = new JLabel();
+		iconRank1.setIcon(new ImageIcon("../LineNo5/src/Resource/Images/ButtonGUI/1remove.png"));
+		iconRank1.setBounds(50, 40, 50, 50);
+		add(iconRank1);
+		// ---------------- 유저 이름과 점수
+		rankLabel1 = new JLabel(rank1);
+		rankLabel1.setFont(new Font("굴림", Font.PLAIN, 20));
+		rankLabel1.setForeground(Color.white);
+		rankLabel1.setBounds(130, 40, 265, 50);
+		add(rankLabel1);
 
 		// ---------------- 2등
-		JLabel rank2 = new JLabel("2등");
-		rank2.setIcon(new ImageIcon("../LineNo5_mh/src/view/buttonsGUI/2remove.png"));
-		rank2.setBounds(50, 100, 50, 50);
-		add(rank2);
 
-		JLabel label2 = new JLabel("2222222222222");
-		label2.setBounds(130, 100, 265, 50);
-		getContentPane().add(label2);
+		JLabel iconRank2 = new JLabel();
+		iconRank2.setIcon(new ImageIcon("../LineNo5/src/Resource/Images/ButtonGUI/2remove.png"));
+		iconRank2.setBounds(50, 100, 50, 50);
+		add(iconRank2);
+		// ---------------- 유저 이름과 점수
+		rankLabel2 = new JLabel(rank2);
+		rankLabel2.setFont(new Font("굴림", Font.PLAIN, 20));
+		rankLabel2.setForeground(Color.white);
+		rankLabel2.setBounds(130, 100, 265, 50);
+		add(rankLabel2);
 
 		// ---------------- 3등
-		JLabel rank3 = new JLabel("3등");
-		rank3.setIcon(new ImageIcon("../LineNo5_mh/src/view/buttonsGUI/3remove.png"));
-		rank3.setBounds(50, 160, 50, 50);
-		add(rank3);
 
-		JLabel label3 = new JLabel("33333333");
-		label3.setBounds(130, 160, 265, 50);
-		add(label3);
+		JLabel iconRank3 = new JLabel();
+		iconRank3.setIcon(new ImageIcon("../LineNo5/src/Resource/Images/ButtonGUI/3remove.png"));
+		iconRank3.setBounds(50, 160, 50, 50);
+		add(iconRank3);
+		// ---------------- 유저 이름과 점수
+		rankLabel3 = new JLabel(rank3);
+		rankLabel3.setFont(new Font("굴림", Font.PLAIN, 20));
+		rankLabel3.setForeground(Color.white);
+		rankLabel3.setBounds(130, 160, 265, 50);
+		add(rankLabel3);
 
-		// ---------------- 4등
+		// ----------------4등 유저 이름과 점수
+		rankLabel4 = new JLabel(rank4);
+		rankLabel4.setFont(new Font("굴림", Font.PLAIN, 20));
+		rankLabel4.setForeground(Color.white);
+		rankLabel4.setBounds(130, 220, 265, 50);
+		add(rankLabel4);
 
-		JLabel label4 = new JLabel("444444444");
-		label4.setBounds(130, 210, 265, 50);
-		add(label4);
 		// --- 결과 창에 USER 목록 나타내기 -------
-		JList userList = new JList();
+		JList userList = new JList(userlist.toArray());
+		userList.setFont(new Font("굴림", Font.PLAIN, 20));
+		userList.setForeground(Color.white);
+		userList.setOpaque(true);
+		userList.setBackground(new Color(0, 0, 0, 100));
 		userList.setBounds(850, 50, 400, 210);
 		add(userList);
 
@@ -263,13 +317,13 @@ public class JFRAME extends JFrame {
 		exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				exit.setIcon(exitover);
+				exit.setIcon(R.ExitBtnMouseOver);
 				exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				exit.setIcon(exitBasic);
+				exit.setIcon(R.ExitBtn);
 				exit.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 

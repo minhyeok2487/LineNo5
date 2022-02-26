@@ -6,14 +6,17 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import client.gameClient;
 import main.R;
 import model.PlayWav;
-import view.buttonsGUI.MultiGameButtons;
 import view.sounds.MusicBackGround;
 
 public class MultiGameFrame extends JFrame {
@@ -22,6 +25,7 @@ public class MultiGameFrame extends JFrame {
 	public static int mouseX, mouseY;
 
 	public MultiGameFrame() {
+		new gameClient(); // 클라이언트 접속
 		new Default(this, R.GameWidth, R.GameHeight); // 프레임 디폴트
 		MultiGameButtons.AddMultiGameButtons(this); // 멀티 게임 버튼 추가 메소드
 		//VolumnButtons.MultiVolumnButtons(this); // 설정 버튼 추가 메소드
@@ -87,6 +91,18 @@ public class MultiGameFrame extends JFrame {
 		add(Multimenubar);
 	}
 
+	public static void playMusic() {
+		try {
+			new PlayWav("/python_MH/audio/OneSecond/",1);
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void paint(Graphics g) {
 		screenImage = createImage(R.GameWidth, R.GameHeight+200);
 		screenGraphic = screenImage.getGraphics();
