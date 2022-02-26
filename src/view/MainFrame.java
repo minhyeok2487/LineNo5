@@ -73,7 +73,7 @@ public class MainFrame extends JFrame {
 		add(UpdateButton);
 
 		// 인터넷 연결 상태 체크
-		boolean isConnected = !R.HOST.equals(InetAddress.getLocalHost().getHostAddress().toString());
+		boolean isConnected = R.HOST.equals(InetAddress.getLocalHost().getHostAddress());
 		if (isConnected) { // 연결이 되있으면
 			UpdateButtonOff.setVisible(false);
 			UpdateButton.setVisible(true);

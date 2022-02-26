@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Image;
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -11,7 +12,8 @@ import client.GameInterface;
 public class R {
 	public static int SongLength = 30; // 노래 갯수
 	public static int SingleGameLength = 10; // 싱글 플레이 시간
-	public static String HOST = "127.30.1.17"; // 임시 서버
+	//public static String HOST = "127.30.1.17"; // 임시 서버
+	public static String HOST = new ServerIP().HOST;
 	public static String user; // 임시 플레이어
 	public static ArrayList<GameInterface> threadList = new ArrayList<GameInterface>();
 	
